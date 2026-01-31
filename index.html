@@ -3,28 +3,72 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hewitt Yu | Medical AI (Digital Pathology & HITL)</title>
-  <meta name="description" content="Hewitt Yu — Medical AI researcher focusing on digital pathology, human-in-the-loop learning, and multimodal methods." />
+  <title>Boyang Yu | Medical AI (Digital Pathology & HITL)</title>
+  <meta name="description" content="Boyang Yu — Medical AI researcher focusing on digital pathology, human-in-the-loop learning, and multimodal methods." />
+
   <style>
     :root{
       --fg:#111; --muted:#6b6b6b; --bd:#e7e7e7; --bg:#fff;
       --card:#ffffff; --shadow: 0 6px 22px rgba(0,0,0,.06);
+      --btn:#f7f7f7; --btnHover:#f1f1f1;
     }
     *{ box-sizing:border-box; }
     body{
       margin:0; background:var(--bg); color:var(--fg);
       font: 16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     }
-    .wrap{ max-width: 980px; margin: 56px auto; padding: 0 18px; }
-    header{ display:flex; align-items:flex-start; justify-content:space-between; gap:18px; flex-wrap:wrap; }
+    .wrap{ max-width: 1020px; margin: 56px auto; padding: 0 18px; }
+    header{
+      display:flex; align-items:flex-start; justify-content:space-between;
+      gap:22px; flex-wrap:wrap;
+    }
+
+    .hero{
+      display:flex; align-items:flex-start; gap:18px; flex-wrap:wrap;
+    }
+    .avatar{
+      width: 96px; height: 96px; border-radius: 18px;
+      border: 1px solid var(--bd);
+      object-fit: cover;
+      box-shadow: var(--shadow);
+      background: #fafafa;
+    }
+
     h1{ margin:0 0 6px; font-size: 30px; letter-spacing:-0.2px; }
     .subtitle{ color:var(--muted); margin:0 0 10px; }
+
     nav a{ margin-right: 12px; color:var(--fg); text-decoration:none; border-bottom:1px solid transparent; }
     nav a:hover{ border-bottom-color:#cfcfcf; }
-    .links a{ color:var(--fg); text-decoration:none; border-bottom:1px solid #ddd; margin-right: 10px; }
-    .links a:hover{ border-bottom-color: var(--fg); }
-    .grid{ display:grid; grid-template-columns: 1.2fr 0.8fr; gap:16px; margin-top: 18px; }
-    @media (max-width: 860px){ .grid{ grid-template-columns: 1fr; } }
+
+    .links{
+      display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+      margin-top: 8px;
+    }
+    .textlink{
+      color:var(--fg); text-decoration:none; border-bottom:1px solid #ddd;
+      padding-bottom: 1px;
+    }
+    .textlink:hover{ border-bottom-color: var(--fg); }
+
+    .iconbar{ display:flex; gap:8px; align-items:center; }
+    .iconbtn{
+      display:inline-flex; align-items:center; justify-content:center;
+      width: 34px; height: 34px;
+      border: 1px solid var(--bd);
+      border-radius: 10px;
+      background: var(--btn);
+      text-decoration:none;
+      box-shadow: 0 4px 14px rgba(0,0,0,.04);
+    }
+    .iconbtn:hover{ background: var(--btnHover); }
+    .iconbtn img{
+      width: 18px; height: 18px;
+      display:block;
+    }
+
+    .grid{ display:grid; grid-template-columns: 1.15fr 0.85fr; gap:16px; margin-top: 18px; }
+    @media (max-width: 900px){ .grid{ grid-template-columns: 1fr; } }
+
     .card{
       background:var(--card); border:1px solid var(--bd); border-radius: 16px;
       padding: 16px 18px; box-shadow: var(--shadow);
@@ -35,6 +79,7 @@
     ul{ margin: 8px 0 0 18px; padding:0; }
     li{ margin: 6px 0; }
     .muted{ color:var(--muted); }
+    .small{ font-size: 13px; }
     .tags{ margin-top:10px; }
     .tag{
       display:inline-block; border:1px solid var(--bd); border-radius: 999px;
@@ -42,40 +87,82 @@
     }
     .item{ padding: 10px 0; border-top: 1px solid var(--bd); }
     .item:first-child{ border-top: none; padding-top: 0; }
-    .small{ font-size: 13px; }
+
+    .twoCol{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:16px;
+    }
+    @media (max-width: 900px){ .twoCol{ grid-template-columns: 1fr; } }
+
     footer{ margin: 24px 0 8px; color:var(--muted); font-size: 13px; }
-    code{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+
+    /* accessibility helper */
+    .sr-only{
+      position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+      overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+    }
   </style>
 </head>
 
 <body>
   <div class="wrap">
     <header>
-      <div>
-        <h1>Hewitt Yu</h1>
-        <div class="subtitle">Medical AI · Digital Pathology · Human-in-the-Loop · Multimodal Learning</div>
-
-        <div class="links">
-          <a href="https://github.com/HewittYu">GitHub</a>
-          <a href="https://scholar.google.com/citations?user=YOUR_SCHOLAR_ID">Google Scholar</a>
-          <a href="https://www.linkedin.com/in/YOUR_LINKEDIN">LinkedIn</a>
-          <a href="mailto:YOUR_EMAIL@domain.com">Email</a>
+      <div class="hero">
+        <!-- Put your headshot here. Add avatar.jpg to the repo root (or change the path). -->
+        <img class="avatar" src="avatar.jpg" alt="Boyang Yu portrait" onerror="this.style.display='none'; document.getElementById('avatarFallback').style.display='flex';" />
+        <div id="avatarFallback" class="avatar" style="display:none; align-items:center; justify-content:center;">
+          <span class="muted small">Add avatar.jpg</span>
         </div>
 
-        <div class="tags">
-          <span class="tag">Digital Pathology</span>
-          <span class="tag">HITL</span>
-          <span class="tag">Segmentation</span>
-          <span class="tag">Multimodal</span>
-          <span class="tag">Deep Learning</span>
+        <div>
+          <h1>Boyang Yu</h1>
+          <div class="subtitle">Medical AI · Digital Pathology · Human-in-the-Loop (HITL) · Multimodal Learning</div>
+
+          <div class="links">
+            <a class="textlink" href="https://github.com/HewittYu" target="_blank" rel="noopener">GitHub</a>
+            <a class="textlink" href="mailto:by3n24@soton.ac.uk">by3n24@soton.ac.uk</a>
+
+            <span class="muted small">|</span>
+
+            <div class="iconbar" aria-label="Profile links">
+              <!-- ORCID icon (Wikimedia PNG of official ORCID iD icon) -->
+              <a class="iconbtn" href="https://orcid.org/0009-0006-1540-5651" target="_blank" rel="noopener" aria-label="ORCID">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/ORCID_iD.svg/250px-ORCID_iD.svg.png" alt="" />
+                <span class="sr-only">ORCID</span>
+              </a>
+
+              <!-- Google Scholar icon (Wikimedia PNG) -->
+              <a class="iconbtn" href="https://scholar.google.co.uk/citations?user=35xPgKQAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Google_Scholar_logo.svg/960px-Google_Scholar_logo.svg.png" alt="" />
+                <span class="sr-only">Google Scholar</span>
+              </a>
+
+              <!-- LinkedIn icon (Wikimedia PNG) -->
+              <a class="iconbtn" href="https://www.linkedin.com/in/boyang-yu-b4963b340/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/LinkedIn_icon.svg/250px-LinkedIn_icon.svg.png" alt="" />
+                <span class="sr-only">LinkedIn</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="tags">
+            <span class="tag">Digital Pathology</span>
+            <span class="tag">HITL</span>
+            <span class="tag">Segmentation</span>
+            <span class="tag">Multimodal</span>
+            <span class="tag">Deep Learning</span>
+          </div>
         </div>
       </div>
 
       <nav class="muted" style="margin-top:6px">
         <a href="#about">About</a>
-        <a href="#research">Research</a>
+        <a href="#education">Education</a>
         <a href="#publications">Publications</a>
         <a href="#projects">Projects</a>
+        <a href="#honors">Honors</a>
+        <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
@@ -86,85 +173,136 @@
         <p>
           I work on <b>Medical AI</b> with a focus on <b>digital pathology</b>. My current interests include
           <b>high-recall learning</b>, <b>human-in-the-loop (HITL)</b> systems for efficient expert interaction,
-          and <b>multimodal</b> methods that combine image signals with complementary context.
+          and <b>multimodal</b> methods that combine image evidence with complementary signals.
         </p>
         <p class="muted">
-          I also explore general deep learning topics that transfer across domains (e.g., representation learning, uncertainty/active querying, efficient training).
+          I also explore general deep learning topics that transfer across domains, such as representation learning,
+          uncertainty-aware training, and practical model evaluation.
         </p>
       </section>
 
       <section class="card">
         <h2>News</h2>
         <div class="item">
-          <div><b>Jan 2026</b> <span class="muted">—</span> Building a research homepage and consolidating publications/projects.</div>
-          <div class="muted small">Replace this with real updates (paper accepted, preprint, open-source release, etc.).</div>
+          <div><b>Nov 2025</b> <span class="muted">—</span> ECS Prize: Top MSc Project (Impact Potential).</div>
+          <div class="muted small">University of Southampton, School of Electronics and Computer Science.</div>
         </div>
         <div class="item">
-          <div><b>2026</b> <span class="muted">—</span> Digital pathology + HITL + multimodal directions ongoing.</div>
+          <div><b>Oct 2025</b> <span class="muted">—</span> ClinSegNet (Bioengineering, JCR-Q2) published.</div>
+        </div>
+        <div class="item">
+          <div><b>Oct 2025</b> <span class="muted">—</span> HMSA-SegNet accepted (IEEE ISPA 2025, Oral).</div>
         </div>
       </section>
     </div>
 
-    <section id="research" class="card" style="margin-top:16px">
-      <h2>Research Focus</h2>
-      <ul>
-        <li><b>Digital Pathology:</b> robust segmentation and screening pipelines, prioritising sensitivity/recall where appropriate.</li>
-        <li><b>Human-in-the-Loop (HITL):</b> interactive learning and expert-efficient querying policies to reduce annotation burden.</li>
-        <li><b>Multimodal Medical AI:</b> fusing image evidence with auxiliary signals (text/meta/weak labels) for better triage and decision support.</li>
-        <li><b>General Deep Learning:</b> transferable methods and practical engineering for reliable training and evaluation.</li>
-      </ul>
+    <section id="education" class="card" style="margin-top:16px">
+      <h2>Education</h2>
+      <div class="item">
+        <div><b>University of Southampton</b> <span class="muted">· Sept 2024 – Nov 2025 · Southampton, UK</span></div>
+        <div class="muted">MSc in Artificial Intelligence · Distinction (Average: 76.13)</div>
+      </div>
+      <div class="item">
+        <div><b>Southwest Minzu University</b> <span class="muted">· Oct 2020 – Jun 2024 · Chengdu, China</span></div>
+        <div class="muted">BEng in Artificial Intelligence · First Class Honours Equivalent (GPA: 3.61/4.00 | 88.52/100)</div>
+      </div>
     </section>
 
     <section id="publications" class="card" style="margin-top:16px">
       <h2>Selected Publications</h2>
       <div class="muted small" style="margin-bottom:8px">
-        Tip: If you have a Google Scholar profile, you can keep this short and link to the full list there.
+        Full list on Google Scholar.
       </div>
       <ul>
         <li>
-          <b>Paper Title</b>. Venue, Year.
-          <span class="muted">Authors…</span>
-          <a href="#">PDF</a> · <a href="#">Code</a> · <a href="#">Project</a>
+          <b>ClinSegNet: Towards Reliable and Enhanced Histopathology Screening</b>. <i>Bioengineering</i>, 2025, 12(11), 1156. (JCR-Q2)
+          <span class="muted">Boyang Yu, Hannah Markham, Karwan Moutasim, Vipul Foria, Haiming Liu.</span>
+          <span class="muted">DOI: 10.3390/bioengineering12111156</span>
         </li>
         <li>
-          <b>Paper Title</b>. Venue, Year.
-          <span class="muted">Authors…</span>
-          <a href="#">PDF</a> · <a href="#">Code</a>
+          <b>HMSA-SegNet: A Parameter-Efficient Architecture with Hierarchical Multi-Scale Attention for Medical Image Segmentation</b>.
+          <i>IEEE ISPA</i>, 2025. (Oral; CCF-C/CORE-B)
+          <span class="muted">Boyang Yu, Hong Seng Gan, Zijun Chen, et al.</span>
+        </li>
+        <li>
+          <b>Efficient Classification of Malicious URLs: M-BERT-A Modified BERT Variant for Enhanced Semantic Understanding</b>.
+          <i>IEEE Access</i>, 2024, 12: 13453–13468. (JCR-Q2)
+          <span class="muted">Boyang Yu, Fei Tang, Daji Ergu, et al.</span>
+          <span class="muted">DOI: 10.1109/ACCESS.2024.3357095</span>
         </li>
       </ul>
     </section>
 
     <section id="projects" class="card" style="margin-top:16px">
       <h2>Featured Projects</h2>
+
       <div class="item">
-        <h3>Project A — Digital Pathology Segmentation (High Recall)</h3>
-        <div class="muted">One-line description of the problem, method highlight, and outcome.</div>
-        <div class="small" style="margin-top:6px"><a href="#">Repository</a> · <a href="#">Demo</a> · <a href="#">Write-up</a></div>
+        <h3>ClinSegNet — High-Recall, Organ-Aware Histopathology Segmentation</h3>
+        <div class="muted">
+          Conditional U-Net with SE attention and dilated edge supervision; multi-organ conditional embeddings; NuInsSeg experiments with extensive augmentation (1,818 images).
+        </div>
+        <div class="small" style="margin-top:6px">
+          <span class="muted">Add links:</span> <a href="https://github.com/HewittYu" target="_blank" rel="noopener">Code</a> ·
+          <a href="https://scholar.google.co.uk/citations?user=35xPgKQAAAAJ&hl=en" target="_blank" rel="noopener">Paper</a>
+        </div>
       </div>
 
       <div class="item">
-        <h3>Project B — Human-in-the-Loop (HITL) / Active Querying</h3>
-        <div class="muted">One-line description (e.g., policy learning, expert-time budget, interaction cost).</div>
-        <div class="small" style="margin-top:6px"><a href="#">Repository</a> · <a href="#">Paper</a></div>
+        <h3>HMSA-SegNet — Parameter-Efficient Segmentation Network</h3>
+        <div class="muted">
+          Adaptive multi-path dilated convolution, transformer interaction, and deformable coordinate attention; strong results on CHAOS and ISIC-2018 with ~0.69M parameters.
+        </div>
+        <div class="small" style="margin-top:6px">
+          <span class="muted">Add links:</span> <a href="https://github.com/HewittYu" target="_blank" rel="noopener">Code</a> ·
+          <a href="https://scholar.google.co.uk/citations?user=35xPgKQAAAAJ&hl=en" target="_blank" rel="noopener">Paper</a>
+        </div>
       </div>
 
       <div class="item">
-        <h3>Project C — Multimodal Medical AI</h3>
-        <div class="muted">One-line description (e.g., image + report/meta fusion for triage / ranking).</div>
-        <div class="small" style="margin-top:6px"><a href="#">Repository</a></div>
+        <h3>Multi-modal Liver Image Segmentation (CHAOS)</h3>
+        <div class="muted">
+          Modified U-Net with dropout/attention; ViT + U-Net variants; decision-level fusion for multimodal integration.
+        </div>
       </div>
+    </section>
+
+    <section class="twoCol" style="margin-top:16px">
+      <section id="honors" class="card">
+        <h2>Honors & Awards</h2>
+        <ul>
+          <li>
+            <b>ECS Prize: Top MSc Project in Category Impact Potential</b> <span class="muted">(Nov 2025)</span><br/>
+            <span class="muted">University of Southampton, School of Electronics and Computer Science.</span>
+          </li>
+          <li>
+            <b>SWUN Excellent Student; SWUN Student Scholarship</b> <span class="muted">(Sept 2021 / 2022 / 2023)</span><br/>
+            <span class="muted">Southwest Minzu University.</span>
+          </li>
+        </ul>
+      </section>
+
+      <section id="skills" class="card">
+        <h2>Skills</h2>
+        <ul>
+          <li><b>Programming:</b> Python (proficient), Java (basic), C (basic)</li>
+          <li><b>ML/DL:</b> NumPy, Pandas, scikit-learn, PyTorch, OpenCV, Matplotlib</li>
+          <li><b>Areas:</b> Deep Learning, Computer Vision, Medical Image Analysis</li>
+          <li><b>Tools:</b> LaTeX, Linux (basic), Zotero, BibTeX</li>
+          <li><b>Languages:</b> English (TOEFL iBT 90), Japanese (JLPT N2), Mandarin (Native)</li>
+        </ul>
+      </section>
     </section>
 
     <section id="contact" class="card" style="margin-top:16px">
       <h2>Contact</h2>
-      <p>Email: <a href="mailto:YOUR_EMAIL@domain.com">YOUR_EMAIL@domain.com</a></p>
+      <p>Email: <a href="mailto:by3n24@soton.ac.uk">by3n24@soton.ac.uk</a></p>
       <p class="muted small">
-        Optional: add a short note on collaboration interests (digital pathology datasets, HITL workflows, multimodal triage).
+        Open to collaborations in digital pathology datasets, HITL workflows, multimodal triage, and reliable segmentation.
       </p>
     </section>
 
     <footer>
-      © <span id="y"></span> Hewitt Yu. Hosted on GitHub Pages.
+      © <span id="y"></span> Boyang Yu. Hosted on GitHub Pages.
     </footer>
   </div>
 
