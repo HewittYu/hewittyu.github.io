@@ -26,12 +26,14 @@
     .hero{
       display:flex; align-items:flex-start; gap:18px; flex-wrap:wrap;
     }
-    .avatar{
-      width: 96px; height: 96px; border-radius: 18px;
-      border: 1px solid var(--bd);
-      object-fit: cover;
-      box-shadow: var(--shadow);
-      background: #fafafa;
+   .avatar{
+    width: 120px;
+    height: 120px;
+    border-radius: 20px;
+    border: 1px solid var(--bd);
+    object-fit: cover;
+    box-shadow: var(--shadow);
+    background: #fafafa;
     }
 
     h1{ margin:0 0 6px; font-size: 30px; letter-spacing:-0.2px; }
@@ -102,6 +104,13 @@
       position:absolute; width:1px; height:1px; padding:0; margin:-1px;
       overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
     }
+
+    .iconsvg{
+    width: 18px;
+    height: 18px;
+    display: block;
+    color: #111;
+    }
     /* ===== Education logos ===== */
   .edu-item{
     display: flex;
@@ -147,31 +156,38 @@
           <div class="subtitle">Medical AI · Digital Pathology · Human-in-the-Loop (HITL) · Multimodal Learning</div>
 
           <div class="links">
-            <a class="textlink" href="https://github.com/HewittYu" target="_blank" rel="noopener">GitHub</a>
-            <a class="textlink" href="mailto:by3n24@soton.ac.uk">by3n24@soton.ac.uk</a>
+  <a class="textlink" href="mailto:by3n24@soton.ac.uk">by3n24@soton.ac.uk</a>
 
-            <span class="muted small">|</span>
+  <span class="muted small">|</span>
 
-            <div class="iconbar" aria-label="Profile links">
-              <!-- ORCID icon (Wikimedia PNG of official ORCID iD icon) -->
-              <a class="iconbtn" href="https://orcid.org/0009-0006-1540-5651" target="_blank" rel="noopener" aria-label="ORCID">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/ORCID_iD.svg/250px-ORCID_iD.svg.png" alt="" />
-                <span class="sr-only">ORCID</span>
-              </a>
-
-              <!-- Google Scholar icon (Wikimedia PNG) -->
-              <a class="iconbtn" href="https://scholar.google.co.uk/citations?user=35xPgKQAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Google_Scholar_logo.svg/960px-Google_Scholar_logo.svg.png" alt="" />
-                <span class="sr-only">Google Scholar</span>
-              </a>
-
-              <!-- LinkedIn icon (Wikimedia PNG) -->
-              <a class="iconbtn" href="https://www.linkedin.com/in/boyang-yu-b4963b340/" target="_blank" rel="noopener" aria-label="LinkedIn">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/LinkedIn_icon.svg/250px-LinkedIn_icon.svg.png" alt="" />
-                <span class="sr-only">LinkedIn</span>
-              </a>
-            </div>
-          </div>
+  <div class="iconbar" aria-label="Profile links">
+      <!-- GitHub icon (inline SVG, official mark style) -->
+      <a class="iconbtn" href="https://github.com/HewittYu" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg class="iconsvg" viewBox="0 0 16 16" aria-hidden="true">
+          <path fill="currentColor" d="M8 0C3.58 0 0 3.73 0 8.33c0 3.68 2.29 6.8 5.47 7.9.4.08.55-.18.55-.4 0-.2-.01-.85-.01-1.54-2.01.38-2.53-.5-2.69-.98-.09-.24-.48-.98-.82-1.18-.28-.16-.68-.56-.01-.58.63-.02 1.08.6 1.23.86.72 1.26 1.87.9 2.33.68.07-.54.28-.9.5-1.1-1.78-.2-3.64-.93-3.64-4.13 0-.92.31-1.67.82-2.26-.08-.21-.36-1.06.08-2.2 0 0 .67-.22 2.2.86a7.3 7.3 0 0 1 2-.28c.68 0 1.36.1 2 .28 1.53-1.08 2.2-.86 2.2-.86.44 1.14.16 2 .08 2.2.51.59.82 1.34.82 2.26 0 3.21-1.87 3.92-3.65 4.13.29.26.54.78.54 1.58 0 1.14-.01 2.06-.01 2.34 0 .22.15.49.55.4C13.71 15.13 16 12 16 8.33 16 3.73 12.42 0 8 0Z"/>
+        </svg>
+        <span class="sr-only">GitHub</span>
+      </a>
+  
+      <!-- ORCID -->
+      <a class="iconbtn" href="https://orcid.org/0009-0006-1540-5651" target="_blank" rel="noopener" aria-label="ORCID">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/ORCID_iD.svg/250px-ORCID_iD.svg.png" alt="" />
+        <span class="sr-only">ORCID</span>
+      </a>
+  
+      <!-- Google Scholar -->
+      <a class="iconbtn" href="https://scholar.google.co.uk/citations?user=35xPgKQAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Google_Scholar_logo.svg/960px-Google_Scholar_logo.svg.png" alt="" />
+        <span class="sr-only">Google Scholar</span>
+      </a>
+  
+      <!-- LinkedIn -->
+      <a class="iconbtn" href="https://www.linkedin.com/in/boyang-yu-b4963b340/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/LinkedIn_icon.svg/250px-LinkedIn_icon.svg.png" alt="" />
+        <span class="sr-only">LinkedIn</span>
+      </a>
+    </div>
+  </div>
 
           <div class="tags">
             <span class="tag">Digital Pathology</span>
@@ -195,18 +211,22 @@
     </header>
 
     <div class="grid">
-      <section id="about" class="card">
-        <h2>About</h2>
-        <p>
-          I work on <b>Medical AI</b> with a focus on <b>digital pathology</b>. My current interests include
-          <b>high-recall learning</b>, <b>human-in-the-loop (HITL)</b> systems for efficient expert interaction,
-          and <b>multimodal</b> methods that combine image evidence with complementary signals.
-        </p>
-        <p class="muted">
-          I also explore general deep learning topics that transfer across domains, such as representation learning,
-          uncertainty-aware training, and practical model evaluation.
-        </p>
-      </section>
+         <section id="about" class="card">
+      <h2>About</h2>
+      <p>
+        I am a <b>first-year PhD student</b> in the <b>School of Electronics and Computer Science (ECS)</b> at the
+        <b>University of Southampton</b>. I work on <b>Medical AI</b>, with a focus on <b>digital pathology</b>.
+      </p>
+      <p>
+        My research centres on <b>high-recall</b> segmentation and screening pipelines, <b>human-in-the-loop (HITL)</b>
+        learning to reduce expert burden, and <b>multimodal</b> methods that combine image evidence with complementary
+        signals (e.g., metadata or weak supervision) for triage and decision support.
+      </p>
+      <p class="muted">
+        I also explore general deep learning topics that transfer across domains, including representation learning,
+        uncertainty-aware training, and reliable evaluation.
+      </p>
+    </section>
 
       <section class="card">
         <h2>News</h2>
