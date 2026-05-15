@@ -6,21 +6,27 @@
   <title>Boyang Yu | Medical AI · Digital Pathology · HITL</title>
   <meta name="description" content="Boyang Yu — Medical AI researcher focusing on digital pathology, human-in-the-loop learning, multimodal learning, and reliable medical image analysis." />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --bg: #f3f0d4;
-      --card: rgba(255, 252, 235, 0.88);
+      --card: rgba(255, 252, 235, 0.90);
       --card-strong: #fffbea;
       --fg: #344b57;
       --muted: rgba(52, 75, 87, 0.72);
       --line: rgba(52, 75, 87, 0.16);
       --accent: #d55c3b;
       --accent-dark: #b9472e;
-      --accent-soft: rgba(213, 92, 59, 0.12);
-      --shadow: 0 18px 48px rgba(52, 75, 87, 0.16);
-      --shadow-soft: 0 8px 24px rgba(52, 75, 87, 0.10);
-      --radius: 22px;
-      --maxw: 1180px;
+      --accent-soft: rgba(213, 92, 59, 0.13);
+      --shadow: 0 22px 60px rgba(52, 75, 87, 0.16);
+      --shadow-soft: 0 10px 28px rgba(52, 75, 87, 0.10);
+      --radius: 26px;
+      --maxw: 1220px;
+      --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --serif: "Playfair Display", Georgia, "Times New Roman", serif;
     }
 
     html[data-theme="dark"]{
@@ -33,8 +39,8 @@
       --accent: #e47a5f;
       --accent-dark: #f09a82;
       --accent-soft: rgba(228, 122, 95, 0.16);
-      --shadow: 0 18px 52px rgba(0, 0, 0, 0.36);
-      --shadow-soft: 0 8px 28px rgba(0, 0, 0, 0.26);
+      --shadow: 0 22px 64px rgba(0, 0, 0, 0.38);
+      --shadow-soft: 0 10px 32px rgba(0, 0, 0, 0.26);
     }
 
     *{
@@ -48,14 +54,17 @@
     body{
       margin: 0;
       background:
-        radial-gradient(circle at top left, rgba(213, 92, 59, 0.16), transparent 24%),
-        radial-gradient(circle at top right, rgba(52, 75, 87, 0.10), transparent 22%),
-        linear-gradient(180deg, rgba(255,255,255,0.25), transparent 360px),
+        radial-gradient(circle at top left, rgba(213, 92, 59, 0.18), transparent 25%),
+        radial-gradient(circle at top right, rgba(52, 75, 87, 0.12), transparent 24%),
+        linear-gradient(180deg, rgba(255,255,255,0.28), transparent 380px),
         var(--bg);
       color: var(--fg);
-      font: 16px/1.72 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.7;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
+      overflow-x: hidden;
     }
 
     a{
@@ -71,15 +80,15 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      backdrop-filter: blur(16px);
+      backdrop-filter: blur(18px);
       background: color-mix(in srgb, var(--bg) 82%, transparent);
-      border-bottom: 1px solid color-mix(in srgb, var(--line) 88%, transparent);
+      border-bottom: 1px solid color-mix(in srgb, var(--line) 86%, transparent);
     }
 
     .topbar-inner{
       max-width: var(--maxw);
       margin: 0 auto;
-      padding: 14px 22px;
+      padding: 15px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -87,8 +96,8 @@
     }
 
     .brand{
-      font-weight: 800;
-      letter-spacing: -0.03em;
+      font-weight: 900;
+      letter-spacing: -0.04em;
       text-decoration: none;
       color: var(--fg);
       white-space: nowrap;
@@ -105,9 +114,9 @@
     .nav a{
       text-decoration: none;
       color: var(--muted);
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       transition: color .2s ease;
     }
@@ -124,7 +133,7 @@
       color: var(--fg);
       width: 40px;
       height: 40px;
-      border-radius: 12px;
+      border-radius: 13px;
       cursor: pointer;
       box-shadow: var(--shadow-soft);
       font-size: 16px;
@@ -132,28 +141,30 @@
     }
 
     .theme-toggle:hover{
-      border-color: color-mix(in srgb, var(--accent) 38%, var(--line));
+      border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
     }
 
     .wrap{
       max-width: var(--maxw);
-      margin: 64px auto 60px;
-      padding: 0 22px;
+      margin: 54px auto 64px;
+      padding: 0 24px;
     }
 
     .hero-card{
+      min-height: 650px;
       display: grid;
-      grid-template-columns: minmax(0, 1.05fr) 360px;
-      gap: 56px;
+      grid-template-columns: minmax(0, 1.08fr) 390px;
+      gap: 72px;
       align-items: center;
-      padding: 64px;
+      padding: 76px 72px;
       background: var(--card);
       border: 1px solid var(--line);
-      border-radius: 32px;
+      border-radius: 36px;
       box-shadow: var(--shadow);
-      backdrop-filter: blur(16px);
+      backdrop-filter: blur(18px);
       overflow: hidden;
       position: relative;
+      animation: cardFadeIn .9s ease both;
     }
 
     .hero-card::before{
@@ -162,14 +173,24 @@
       inset: 0;
       pointer-events: none;
       background:
-        linear-gradient(90deg, rgba(213, 92, 59, 0.06), transparent 38%),
-        radial-gradient(circle at 82% 20%, rgba(52, 75, 87, 0.08), transparent 28%);
+        linear-gradient(90deg, rgba(213, 92, 59, 0.07), transparent 40%),
+        radial-gradient(circle at 82% 20%, rgba(52, 75, 87, 0.10), transparent 30%);
     }
 
     .hero-content,
     .hero-visual{
       position: relative;
       z-index: 1;
+    }
+
+    .hero-content{
+      animation: slideFromLeft .95s cubic-bezier(.2,.8,.2,1) .12s both;
+    }
+
+    .hero-visual{
+      display: flex;
+      justify-content: center;
+      animation: slideFromRight .95s cubic-bezier(.2,.8,.2,1) .16s both;
     }
 
     .eyebrow{
@@ -180,31 +201,44 @@
       border-radius: 999px;
       background: var(--accent-soft);
       color: var(--accent);
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 0.04em;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.09em;
       text-transform: uppercase;
-      margin-bottom: 18px;
+      margin-bottom: 24px;
     }
 
     h1{
       margin: 0;
-      font-size: clamp(46px, 7vw, 82px);
-      line-height: 0.98;
-      letter-spacing: -0.075em;
+      font-family: var(--serif);
+      font-size: clamp(58px, 8.2vw, 112px);
+      line-height: 0.88;
+      letter-spacing: -0.065em;
       color: var(--fg);
+      max-width: 760px;
+      font-weight: 800;
     }
 
-    .subtitle{
-      margin: 20px 0 0;
+    .hero-lead{
+      margin: 28px 0 0;
+      max-width: 690px;
+      font-size: 21px;
+      line-height: 1.55;
       color: var(--muted);
-      font-size: 18px;
-      line-height: 1.65;
-      max-width: 680px;
+    }
+
+    .hero-lead .strong{
+      color: var(--fg);
+      font-weight: 800;
+    }
+
+    .hero-lead .accent{
+      color: var(--accent);
+      font-weight: 800;
     }
 
     .hero-meta{
-      margin-top: 18px;
+      margin-top: 22px;
       display: flex;
       flex-wrap: wrap;
       gap: 10px 16px;
@@ -224,11 +258,11 @@
       height: 6px;
       border-radius: 999px;
       background: var(--accent);
-      opacity: 0.75;
+      opacity: 0.8;
     }
 
     .hero-links{
-      margin-top: 24px;
+      margin-top: 28px;
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
@@ -241,15 +275,15 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      min-height: 42px;
-      padding: 0 16px;
+      min-height: 44px;
+      padding: 0 17px;
       border: 1px solid var(--line);
-      border-radius: 13px;
+      border-radius: 14px;
       background: var(--card-strong);
       text-decoration: none;
       box-shadow: var(--shadow-soft);
       transition: transform .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 14px;
     }
 
@@ -257,7 +291,7 @@
     .iconbtn:hover,
     .btn:focus-visible,
     .iconbtn:focus-visible{
-      transform: translateY(-1px);
+      transform: translateY(-2px);
       border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
       color: var(--accent);
     }
@@ -281,7 +315,7 @@
     }
 
     .iconbtn{
-      width: 42px;
+      width: 44px;
       padding: 0;
     }
 
@@ -292,21 +326,16 @@
       display: block;
     }
 
-    .hero-visual{
-      display: flex;
-      justify-content: center;
-    }
-
     .avatar,
     .avatar-fallback{
-      width: 330px;
-      height: 410px;
-      border-radius: 22px;
+      width: 360px;
+      height: 460px;
+      border-radius: 26px;
       border: 1px solid var(--line);
       object-fit: cover;
       background:
         linear-gradient(145deg, color-mix(in srgb, var(--accent) 10%, var(--card-strong)), var(--card-strong));
-      box-shadow: 0 20px 44px rgba(52, 75, 87, 0.18);
+      box-shadow: 0 24px 54px rgba(52, 75, 87, 0.20);
       filter: grayscale(100%);
     }
 
@@ -317,12 +346,12 @@
       color: var(--muted);
       font-size: 14px;
       text-align: center;
-      padding: 18px;
+      padding: 20px;
       filter: none;
     }
 
     .tags{
-      margin-top: 22px;
+      margin-top: 24px;
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
@@ -338,36 +367,38 @@
       color: var(--muted);
       background: color-mix(in srgb, var(--card-strong) 92%, transparent);
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .main-grid{
       display: grid;
       grid-template-columns: minmax(0, 1.18fr) minmax(300px, .82fr);
-      gap: 22px;
-      margin-top: 22px;
+      gap: 24px;
+      margin-top: 24px;
     }
 
     .stack{
       display: grid;
-      gap: 22px;
+      gap: 24px;
     }
 
     .card{
       background: var(--card);
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      padding: 26px;
+      padding: 30px;
       box-shadow: var(--shadow-soft);
       backdrop-filter: blur(14px);
     }
 
     h2{
-      margin: 0 0 16px;
-      font-size: 22px;
-      line-height: 1.2;
-      letter-spacing: -0.035em;
+      margin: 0 0 18px;
+      font-family: var(--serif);
+      font-size: 42px;
+      line-height: 0.98;
+      letter-spacing: -0.055em;
       color: var(--fg);
+      font-weight: 800;
     }
 
     h3{
@@ -381,7 +412,7 @@
     }
 
     ul{
-      margin: 12px 0 0 18px;
+      margin: 14px 0 0 18px;
       padding: 0;
     }
 
@@ -397,48 +428,18 @@
       font-size: 13px;
     }
 
+    .section-anchor{
+      scroll-margin-top: 94px;
+    }
+
     .item{
-      padding: 16px 0;
+      padding: 17px 0;
       border-top: 1px solid var(--line);
     }
 
     .item:first-child{
       border-top: none;
       padding-top: 0;
-    }
-
-    .section-anchor{
-      scroll-margin-top: 92px;
-    }
-
-    .edu-item,
-    .timeline-item{
-      display: flex;
-      gap: 15px;
-      align-items: flex-start;
-      padding: 16px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .edu-item:first-child,
-    .timeline-item:first-child{
-      border-top: none;
-      padding-top: 0;
-    }
-
-    .edu-logo{
-      width: 50px;
-      height: 50px;
-      border-radius: 13px;
-      border: 1px solid var(--line);
-      object-fit: cover;
-      background: var(--card-strong);
-      flex: 0 0 auto;
-    }
-
-    .edu-text,
-    .timeline-text{
-      flex: 1 1 auto;
     }
 
     .pub-title,
@@ -455,43 +456,107 @@
     .inline-links a{
       text-decoration: none;
       color: var(--accent);
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .inline-links a:hover{
       text-decoration: underline;
     }
 
-    .news-date{
+    .education-tabs{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .education-tab{
+      appearance: none;
+      border: 1px solid var(--line);
+      background: var(--card-strong);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 9px 14px;
+      font-family: var(--sans);
+      font-size: 13px;
       font-weight: 800;
-      min-width: 78px;
-      display: inline-block;
-      color: var(--accent);
+      cursor: pointer;
+      transition: .2s ease;
     }
 
-    .contact-line{
-      margin-top: 10px;
+    .education-tab:hover{
+      color: var(--accent);
+      border-color: color-mix(in srgb, var(--accent) 38%, var(--line));
     }
 
-    .contact-line a,
-    .textlink{
+    .education-tab.active{
+      background: var(--accent);
+      color: #fffbea;
+      border-color: transparent;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .education-window{
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: color-mix(in srgb, var(--card-strong) 82%, transparent);
+    }
+
+    .education-track{
+      display: flex;
+      width: 300%;
+      transition: transform .55s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .education-panel{
+      width: calc(100% / 3);
+      padding: 30px;
+      display: grid;
+      grid-template-columns: 78px minmax(0, 1fr);
+      gap: 22px;
+      align-items: flex-start;
+    }
+
+    .edu-logo{
+      width: 72px;
+      height: 72px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      object-fit: cover;
+      background: var(--card-strong);
+      flex: 0 0 auto;
+    }
+
+    .edu-kicker{
       color: var(--accent);
-      text-decoration: none;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .edu-title{
+      font-size: 24px;
+      line-height: 1.2;
+      font-weight: 900;
+      letter-spacing: -0.035em;
+      color: var(--fg);
+    }
+
+    .edu-degree{
+      margin-top: 6px;
+      color: var(--muted);
       font-weight: 700;
     }
 
-    .contact-line a:hover,
-    .textlink:hover{
-      text-decoration: underline;
+    .edu-description{
+      margin-top: 14px;
+      color: var(--muted);
     }
 
-    .project-list{
-      display: grid;
-      gap: 28px;
-      margin-top: 18px;
-    }
-
-    .project-card{
+    .project-stage{
       display: grid;
       grid-template-columns: minmax(260px, 0.95fr) minmax(0, 1.05fr);
       gap: 44px;
@@ -502,6 +567,7 @@
       background:
         linear-gradient(135deg, color-mix(in srgb, var(--card-strong) 92%, transparent), color-mix(in srgb, var(--bg) 78%, transparent));
       box-shadow: var(--shadow-soft);
+      overflow: hidden;
     }
 
     .project-visual{
@@ -510,79 +576,81 @@
       justify-content: center;
     }
 
-    .project-image,
     .project-image-placeholder{
       width: 100%;
-      min-height: 260px;
-      border-radius: 20px;
-      border: 1px solid var(--line);
+      min-height: 285px;
+      border-radius: 22px;
+      border: 1px dashed color-mix(in srgb, var(--fg) 28%, transparent);
       background:
         linear-gradient(135deg, rgba(213, 92, 59, 0.10), rgba(52, 75, 87, 0.08)),
         var(--card-strong);
       box-shadow: 0 16px 34px rgba(52, 75, 87, 0.10);
-    }
-
-    .project-image{
-      object-fit: cover;
-    }
-
-    .project-image-placeholder{
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       color: var(--muted);
       font-size: 14px;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 0.02em;
       padding: 24px;
-      border-style: dashed;
+      overflow: hidden;
+    }
+
+    .project-image-placeholder img{
+      width: 100%;
+      height: 100%;
+      min-height: 285px;
+      object-fit: cover;
+      border-radius: 20px;
+      display: block;
     }
 
     .project-content{
       border-left: 2px solid color-mix(in srgb, var(--accent) 42%, var(--line));
       padding-left: 34px;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .project-date{
       display: inline-flex;
       align-items: center;
+      width: fit-content;
       min-height: 28px;
       padding: 0 12px;
       border-radius: 999px;
       background: var(--accent-soft);
       color: var(--accent);
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       margin-bottom: 16px;
     }
 
     .project-content h3{
-      font-size: 28px;
-      line-height: 1.12;
-      letter-spacing: -0.04em;
-      margin: 0;
+      font-family: var(--serif);
+      font-size: 44px;
+      line-height: 0.98;
+      letter-spacing: -0.055em;
       color: var(--fg);
+      font-weight: 800;
     }
 
     .project-subtitle{
-      margin-top: 8px;
+      margin-top: 10px;
       font-size: 16px;
       color: var(--accent);
-      font-weight: 800;
+      font-weight: 900;
       line-height: 1.4;
     }
 
-    .project-content p{
-      color: var(--muted);
-      margin-top: 14px;
-    }
-
+    .project-content p,
     .project-content ul{
       color: var(--muted);
-      margin-top: 14px;
     }
 
     .project-tags{
@@ -601,8 +669,48 @@
       background: var(--accent-soft);
       color: var(--fg);
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 800;
       border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
+    }
+
+    .project-dots{
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .project-dot{
+      appearance: none;
+      width: 11px;
+      height: 11px;
+      border-radius: 999px;
+      border: 1px solid color-mix(in srgb, var(--fg) 28%, transparent);
+      background: transparent;
+      cursor: pointer;
+      transition: .22s ease;
+      padding: 0;
+    }
+
+    .project-dot.active{
+      width: 32px;
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .project-stage.anim-left{
+      animation: projectFromLeft .42s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    .project-stage.anim-right{
+      animation: projectFromRight .42s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    .news-date{
+      font-weight: 900;
+      min-width: 78px;
+      display: inline-block;
+      color: var(--accent);
     }
 
     .skills-list{
@@ -625,8 +733,24 @@
       color: var(--fg);
     }
 
+    .contact-line{
+      margin-top: 10px;
+    }
+
+    .contact-line a,
+    .textlink{
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .contact-line a:hover,
+    .textlink:hover{
+      text-decoration: underline;
+    }
+
     .footer{
-      margin: 28px 0 0;
+      margin: 30px 0 0;
       color: var(--muted);
       font-size: 13px;
       text-align: center;
@@ -644,10 +768,80 @@
       border: 0;
     }
 
-    @media (max-width: 980px){
+    @keyframes cardFadeIn{
+      from{
+        opacity: 0;
+        transform: translateY(18px) scale(.985);
+      }
+      to{
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes slideFromLeft{
+      from{
+        opacity: 0;
+        transform: translateX(-46px);
+      }
+      to{
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideFromRight{
+      from{
+        opacity: 0;
+        transform: translateX(46px);
+      }
+      to{
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes projectFromLeft{
+      from{
+        opacity: 0;
+        transform: translateX(-28px);
+      }
+      to{
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes projectFromRight{
+      from{
+        opacity: 0;
+        transform: translateX(28px);
+      }
+      to{
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after{
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+      }
+    }
+
+    @media (max-width: 1040px){
       .hero-card{
         grid-template-columns: 1fr;
-        padding: 42px;
+        padding: 54px;
+        gap: 42px;
       }
 
       .hero-visual{
@@ -656,32 +850,29 @@
 
       .avatar,
       .avatar-fallback{
-        width: 260px;
-        height: 320px;
+        width: 300px;
+        height: 380px;
       }
 
       .main-grid{
         grid-template-columns: 1fr;
       }
 
-      .project-card{
+      .project-stage{
         grid-template-columns: 1fr;
-        gap: 28px;
+        gap: 30px;
       }
 
       .project-content{
         border-left: none;
         padding-left: 0;
         border-top: 2px solid color-mix(in srgb, var(--accent) 42%, var(--line));
-        padding-top: 28px;
-      }
-
-      .topbar-inner{
-        align-items: flex-start;
+        padding-top: 30px;
+        min-height: auto;
       }
     }
 
-    @media (max-width: 720px){
+    @media (max-width: 760px){
       .wrap{
         margin-top: 32px;
         padding: 0 16px;
@@ -700,47 +891,56 @@
       }
 
       .nav a{
-        font-size: 12px;
+        font-size: 11px;
       }
 
       .hero-card{
-        padding: 28px;
-        border-radius: 26px;
+        min-height: auto;
+        padding: 32px;
+        border-radius: 28px;
       }
 
       h1{
-        font-size: 46px;
+        font-size: 58px;
       }
 
-      .subtitle{
-        font-size: 16px;
+      .hero-lead{
+        font-size: 17px;
+      }
+
+      h2{
+        font-size: 36px;
       }
 
       .card{
-        padding: 22px;
+        padding: 24px;
       }
 
-      .project-card{
+      .education-panel{
+        grid-template-columns: 1fr;
+        padding: 24px;
+      }
+
+      .project-stage{
         padding: 24px;
       }
 
       .project-content h3{
-        font-size: 24px;
+        font-size: 36px;
       }
 
-      .project-image,
       .project-image-placeholder{
         min-height: 220px;
       }
     }
 
-    @media (max-width: 460px){
+    @media (max-width: 480px){
       .hero-card{
-        padding: 22px;
+        padding: 24px;
       }
 
       h1{
-        font-size: 40px;
+        font-size: 48px;
       }
 
       .avatar,
@@ -753,11 +953,23 @@
         width: 100%;
       }
 
-      .project-card{
+      .education-tabs{
+        gap: 8px;
+      }
+
+      .education-tab{
+        font-size: 12px;
+        padding: 8px 12px;
+      }
+
+      .project-stage{
         padding: 20px;
       }
 
-      .project-image,
+      .project-content h3{
+        font-size: 32px;
+      }
+
       .project-image-placeholder{
         min-height: 190px;
       }
@@ -787,12 +999,19 @@
   <main class="wrap" id="top">
     <section class="hero-card">
       <div class="hero-content">
-        <div class="eyebrow">Medical AI Researcher</div>
+        <div class="eyebrow">Medical AI · Digital Pathology · HITL</div>
 
-        <h1>Boyang Yu</h1>
+        <h1>
+          Building the Future<br>
+          of Human-Centred<br>
+          Medical AI.
+        </h1>
 
-        <p class="subtitle">
-          Digital Pathology · Human-in-the-Loop Learning · Multimodal Medical AI · Reliable Screening Systems
+        <p class="hero-lead">
+          I am <span class="strong">Boyang Yu</span>, an incoming PhD student at the
+          <span class="strong">University of Southampton</span>. My work explores
+          <span class="accent">high-recall medical image analysis</span>,
+          <span class="accent">human-in-the-loop learning</span>, and multimodal systems for real-world clinical screening.
         </p>
 
         <div class="hero-meta">
@@ -804,7 +1023,7 @@
         <div class="hero-links">
           <a class="btn btn-primary" href="mailto:by3n24@soton.ac.uk">Email</a>
           <a class="btn" href="https://scholar.google.co.uk/citations?user=35xPgKQAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
-          <a class="btn" href="#publications">Selected Publications</a>
+          <a class="btn" href="#projects">View Projects</a>
         </div>
 
         <div class="hero-links" style="margin-top:12px;">
@@ -869,27 +1088,49 @@
         <section id="education" class="card section-anchor">
           <h2>Education</h2>
 
-          <div class="edu-item">
-            <img class="edu-logo" src="icons/uos.jpg" alt="University of Southampton logo" onerror="this.style.display='none';" />
-            <div class="edu-text">
-              <div><b>University of Southampton</b> <span class="muted">· Sept 2026 – present · Southampton, UK</span></div>
-              <div class="muted">PhD in Computer Science, incoming</div>
-            </div>
+          <div class="education-tabs" role="tablist" aria-label="Education tabs">
+            <button class="education-tab active" type="button" data-edu="0">PhD</button>
+            <button class="education-tab" type="button" data-edu="1">MSc</button>
+            <button class="education-tab" type="button" data-edu="2">BEng</button>
           </div>
 
-          <div class="edu-item">
-            <img class="edu-logo" src="icons/uos.jpg" alt="University of Southampton logo" onerror="this.style.display='none';" />
-            <div class="edu-text">
-              <div><b>University of Southampton</b> <span class="muted">· Sept 2024 – Nov 2025 · Southampton, UK</span></div>
-              <div class="muted">MSc in Artificial Intelligence · Distinction, average: 76.13</div>
-            </div>
-          </div>
+          <div class="education-window">
+            <div class="education-track" id="educationTrack">
+              <article class="education-panel">
+                <img class="edu-logo" src="icons/uos.jpg" alt="University of Southampton logo" onerror="this.style.display='none';" />
+                <div>
+                  <div class="edu-kicker">Sept 2026 – Present · Southampton, UK</div>
+                  <div class="edu-title">University of Southampton</div>
+                  <div class="edu-degree">PhD in Computer Science, incoming</div>
+                  <p class="edu-description">
+                    Research direction: Medical AI, digital pathology, human-in-the-loop learning, multimodal learning, and reliable AI for pre-diagnostic clinical workflows.
+                  </p>
+                </div>
+              </article>
 
-          <div class="edu-item">
-            <img class="edu-logo" src="icons/smu.jpg" alt="Southwest Minzu University logo" onerror="this.style.display='none';" />
-            <div class="edu-text">
-              <div><b>Southwest Minzu University</b> <span class="muted">· Oct 2020 – Jun 2024 · Chengdu, China</span></div>
-              <div class="muted">BEng in Artificial Intelligence · First Class Honours equivalent, GPA: 3.61/4.00 | 88.52/100</div>
+              <article class="education-panel">
+                <img class="edu-logo" src="icons/uos.jpg" alt="University of Southampton logo" onerror="this.style.display='none';" />
+                <div>
+                  <div class="edu-kicker">Sept 2024 – Nov 2025 · Southampton, UK</div>
+                  <div class="edu-title">University of Southampton</div>
+                  <div class="edu-degree">MSc in Artificial Intelligence · Distinction, average: 76.13</div>
+                  <p class="edu-description">
+                    MSc project focused on high-recall histopathology segmentation and screening-oriented model design, later developed into ClinSegNet.
+                  </p>
+                </div>
+              </article>
+
+              <article class="education-panel">
+                <img class="edu-logo" src="icons/smu.jpg" alt="Southwest Minzu University logo" onerror="this.style.display='none';" />
+                <div>
+                  <div class="edu-kicker">Oct 2020 – Jun 2024 · Chengdu, China</div>
+                  <div class="edu-title">Southwest Minzu University</div>
+                  <div class="edu-degree">BEng in Artificial Intelligence · GPA: 3.61/4.00 | 88.52/100</div>
+                  <p class="edu-description">
+                    Undergraduate thesis explored multi-modal liver image segmentation using CHAOS, modified U-Net variants, attention mechanisms, and multimodal fusion strategies.
+                  </p>
+                </div>
+              </article>
             </div>
           </div>
         </section>
@@ -929,105 +1170,47 @@
             Selected research projects in medical image analysis, digital pathology, and reliable AI systems.
           </p>
 
-          <div class="project-list">
-            <article class="project-card">
-              <div class="project-visual">
-                <div class="project-image-placeholder">
-                  Project Figure Coming Soon
-                </div>
+          <article class="project-stage" id="projectStage">
+            <div class="project-visual">
+              <div class="project-image-placeholder" id="projectFigure">
+                Project Figure Coming Soon
+              </div>
+            </div>
+
+            <div class="project-content">
+              <div class="project-date" id="projectDate">2025</div>
+              <h3 id="projectTitle">ClinSegNet</h3>
+              <div class="project-subtitle" id="projectSubtitle">High-Recall Histopathology Screening System</div>
+
+              <p id="projectDescription">
+                A recall-oriented segmentation framework for histopathology screening, designed to reduce false negatives in pre-diagnostic clinical workflows.
+              </p>
+
+              <ul id="projectBullets">
+                <li>Developed an organ-aware conditional U-Net with SE attention.</li>
+                <li>Introduced dilated-edge supervision for boundary refinement.</li>
+                <li>Used Tversky-based optimisation to prioritise recall.</li>
+                <li>Evaluated on multi-organ histopathology data derived from NuInsSeg.</li>
+              </ul>
+
+              <div class="project-tags" id="projectTags">
+                <span>Medical AI</span>
+                <span>Digital Pathology</span>
+                <span>Segmentation</span>
+                <span>PyTorch</span>
               </div>
 
-              <div class="project-content">
-                <div class="project-date">2025</div>
-                <h3>ClinSegNet</h3>
-                <div class="project-subtitle">High-Recall Histopathology Screening System</div>
-
-                <p>
-                  A recall-oriented segmentation framework for histopathology screening, designed to reduce false negatives in pre-diagnostic clinical workflows.
-                </p>
-
-                <ul>
-                  <li>Developed an organ-aware conditional U-Net with SE attention.</li>
-                  <li>Introduced dilated-edge supervision for boundary refinement.</li>
-                  <li>Used Tversky-based optimisation to prioritise recall.</li>
-                  <li>Evaluated on multi-organ histopathology data derived from NuInsSeg.</li>
-                </ul>
-
-                <div class="project-tags">
-                  <span>Medical AI</span>
-                  <span>Digital Pathology</span>
-                  <span>Segmentation</span>
-                  <span>PyTorch</span>
-                </div>
-
-                <div class="inline-links">
-                  <a href="https://doi.org/10.3390/bioengineering12111156" target="_blank" rel="noopener">Paper</a>
-                </div>
+              <div class="inline-links" id="projectLinks">
+                <a href="https://doi.org/10.3390/bioengineering12111156" target="_blank" rel="noopener">Paper</a>
               </div>
-            </article>
+            </div>
+          </article>
 
-            <article class="project-card">
-              <div class="project-visual">
-                <div class="project-image-placeholder">
-                  Project Figure Coming Soon
-                </div>
-              </div>
-
-              <div class="project-content">
-                <div class="project-date">2025</div>
-                <h3>HMSA-SegNet</h3>
-                <div class="project-subtitle">Parameter-Efficient Medical Image Segmentation</div>
-
-                <p>
-                  A lightweight medical segmentation architecture based on hierarchical multi-scale attention and compact feature interaction.
-                </p>
-
-                <ul>
-                  <li>Designed for efficient medical image segmentation with a compact parameter budget.</li>
-                  <li>Combines multi-scale feature extraction with attention-guided representation learning.</li>
-                  <li>Targets stronger segmentation performance without excessive computational overhead.</li>
-                  <li>Accepted by IEEE ISPA 2025 as an oral presentation.</li>
-                </ul>
-
-                <div class="project-tags">
-                  <span>Medical Segmentation</span>
-                  <span>Attention</span>
-                  <span>Lightweight Model</span>
-                  <span>ISPA 2025</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="project-card">
-              <div class="project-visual">
-                <div class="project-image-placeholder">
-                  Project Figure Coming Soon
-                </div>
-              </div>
-
-              <div class="project-content">
-                <div class="project-date">2024</div>
-                <h3>Multi-modal Liver Segmentation</h3>
-                <div class="project-subtitle">CHAOS-based Undergraduate Thesis Project</div>
-
-                <p>
-                  Undergraduate thesis work on multi-modal liver image segmentation, focusing on modified U-Net variants, attention mechanisms, and multimodal fusion strategies.
-                </p>
-
-                <ul>
-                  <li>Explored deep learning methods for liver segmentation from medical imaging data.</li>
-                  <li>Compared U-Net-based variants and attention-enhanced segmentation structures.</li>
-                  <li>Investigated multimodal fusion for improved robustness across imaging conditions.</li>
-                </ul>
-
-                <div class="project-tags">
-                  <span>CHAOS</span>
-                  <span>Liver Segmentation</span>
-                  <span>U-Net</span>
-                  <span>Medical Imaging</span>
-                </div>
-              </div>
-            </article>
+          <div class="project-dots" aria-label="Project selector">
+            <button class="project-dot active" type="button" data-project="0" aria-label="Show ClinSegNet"></button>
+            <button class="project-dot" type="button" data-project="1" aria-label="Show HMSA-SegNet"></button>
+            <button class="project-dot" type="button" data-project="2" aria-label="Show Multi-modal Liver Segmentation"></button>
+            <button class="project-dot" type="button" data-project="3" aria-label="Show LLM Report Structuring"></button>
           </div>
         </section>
       </div>
@@ -1051,7 +1234,7 @@
         </section>
 
         <section id="honors" class="card section-anchor">
-          <h2>Honors & Awards</h2>
+          <h2>Honors</h2>
 
           <ul>
             <li>
@@ -1147,6 +1330,151 @@
       toggle.addEventListener('click', function() {
         const current = root.getAttribute('data-theme');
         setTheme(current === 'dark' ? 'light' : 'dark');
+      });
+    })();
+
+    (function() {
+      const tabs = document.querySelectorAll('.education-tab');
+      const track = document.getElementById('educationTrack');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const index = Number(tab.dataset.edu);
+
+          tabs.forEach(item => item.classList.remove('active'));
+          tab.classList.add('active');
+
+          track.style.transform = `translateX(-${index * (100 / 3)}%)`;
+        });
+      });
+    })();
+
+    (function() {
+      const projects = [
+        {
+          date: '2025',
+          title: 'ClinSegNet',
+          subtitle: 'High-Recall Histopathology Screening System',
+          figure: 'Project Figure Coming Soon',
+          image: '',
+          description: 'A recall-oriented segmentation framework for histopathology screening, designed to reduce false negatives in pre-diagnostic clinical workflows.',
+          bullets: [
+            'Developed an organ-aware conditional U-Net with SE attention.',
+            'Introduced dilated-edge supervision for boundary refinement.',
+            'Used Tversky-based optimisation to prioritise recall.',
+            'Evaluated on multi-organ histopathology data derived from NuInsSeg.'
+          ],
+          tags: ['Medical AI', 'Digital Pathology', 'Segmentation', 'PyTorch'],
+          links: [
+            { label: 'Paper', href: 'https://doi.org/10.3390/bioengineering12111156' }
+          ]
+        },
+        {
+          date: '2025',
+          title: 'HMSA-SegNet',
+          subtitle: 'Parameter-Efficient Medical Image Segmentation',
+          figure: 'Project Figure Coming Soon',
+          image: '',
+          description: 'A lightweight medical segmentation architecture based on hierarchical multi-scale attention and compact feature interaction.',
+          bullets: [
+            'Designed for efficient medical image segmentation with a compact parameter budget.',
+            'Combines multi-scale feature extraction with attention-guided representation learning.',
+            'Targets strong segmentation performance without excessive computational overhead.',
+            'Accepted by IEEE ISPA 2025 as an oral presentation.'
+          ],
+          tags: ['Medical Segmentation', 'Attention', 'Lightweight Model', 'ISPA 2025'],
+          links: []
+        },
+        {
+          date: '2024',
+          title: 'Multi-modal Liver Segmentation',
+          subtitle: 'CHAOS-based Undergraduate Thesis Project',
+          figure: 'Project Figure Coming Soon',
+          image: '',
+          description: 'Undergraduate thesis work on multi-modal liver image segmentation, focusing on modified U-Net variants, attention mechanisms, and multimodal fusion strategies.',
+          bullets: [
+            'Explored deep learning methods for liver segmentation from medical imaging data.',
+            'Compared U-Net-based variants and attention-enhanced segmentation structures.',
+            'Investigated multimodal fusion for improved robustness across imaging conditions.'
+          ],
+          tags: ['CHAOS', 'Liver Segmentation', 'U-Net', 'Medical Imaging'],
+          links: []
+        },
+        {
+          date: '2026',
+          title: 'LLM Report Structuring',
+          subtitle: 'From Free-text Reports to Structured Clinical Signals',
+          figure: 'Project Figure Coming Soon',
+          image: '',
+          description: 'A planned line of work on extracting structured metadata from free-text pathology or clinical reports for downstream multimodal analysis and triage.',
+          bullets: [
+            'Focuses on converting unstructured reports into standardised fields.',
+            'Supports weak supervision and metadata-aware medical AI workflows.',
+            'Designed to connect textual evidence with image-based screening models.'
+          ],
+          tags: ['LLM', 'Information Extraction', 'Medical Reports', 'Multimodal AI'],
+          links: []
+        }
+      ];
+
+      const stage = document.getElementById('projectStage');
+      const dots = document.querySelectorAll('.project-dot');
+      const figure = document.getElementById('projectFigure');
+      const date = document.getElementById('projectDate');
+      const title = document.getElementById('projectTitle');
+      const subtitle = document.getElementById('projectSubtitle');
+      const description = document.getElementById('projectDescription');
+      const bullets = document.getElementById('projectBullets');
+      const tags = document.getElementById('projectTags');
+      const links = document.getElementById('projectLinks');
+
+      let currentProject = 0;
+
+      function renderProject(index) {
+        const project = projects[index];
+        const direction = index > currentProject ? 'anim-right' : 'anim-left';
+
+        stage.classList.remove('anim-left', 'anim-right');
+        void stage.offsetWidth;
+        stage.classList.add(direction);
+
+        if (project.image) {
+          figure.innerHTML = `<img src="${project.image}" alt="${project.title} project figure">`;
+        } else {
+          figure.textContent = project.figure;
+        }
+
+        date.textContent = project.date;
+        title.textContent = project.title;
+        subtitle.textContent = project.subtitle;
+        description.textContent = project.description;
+
+        bullets.innerHTML = project.bullets.map(item => `<li>${item}</li>`).join('');
+        tags.innerHTML = project.tags.map(item => `<span>${item}</span>`).join('');
+
+        if (project.links.length > 0) {
+          links.style.display = 'block';
+          links.innerHTML = project.links
+            .map(link => `<a href="${link.href}" target="_blank" rel="noopener">${link.label}</a>`)
+            .join(' · ');
+        } else {
+          links.style.display = 'none';
+          links.innerHTML = '';
+        }
+
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[index].classList.add('active');
+
+        currentProject = index;
+      }
+
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const index = Number(dot.dataset.project);
+          if (index !== currentProject) {
+            renderProject(index);
+          }
+        });
       });
     })();
   </script>
