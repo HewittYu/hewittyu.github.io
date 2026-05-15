@@ -307,94 +307,28 @@
     }
 
     .hero-meta{
-      margin-top: 22px;
+      margin-top: 30px;
       display: flex;
       flex-wrap: wrap;
-      gap: 10px 16px;
+      gap: 14px 24px;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 16px;
     }
 
     .hero-meta span{
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
+      font-weight: 600;
     }
 
     .hero-meta span::before{
       content: "";
-      width: 6px;
-      height: 6px;
+      width: 7px;
+      height: 7px;
       border-radius: 999px;
       background: var(--accent);
       opacity: 0.8;
-    }
-
-    .hero-links{
-      margin-top: 28px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .btn,
-    .iconbtn{
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      min-height: 44px;
-      padding: 0 17px;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      background: var(--card-strong);
-      text-decoration: none;
-      box-shadow: var(--shadow-soft);
-      transition: transform .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
-      font-weight: 800;
-      font-size: 14px;
-      cursor: pointer;
-      color: var(--fg);
-    }
-
-    .btn:hover,
-    .iconbtn:hover,
-    .btn:focus-visible,
-    .iconbtn:focus-visible{
-      transform: translateY(-2px);
-      border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
-      color: var(--accent);
-    }
-
-    .btn-primary{
-      background: var(--accent);
-      color: #fffbea;
-      border-color: transparent;
-    }
-
-    .btn-primary:hover,
-    .btn-primary:focus-visible{
-      background: var(--accent-dark);
-      color: #fffbea;
-    }
-
-    .iconbar{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .iconbtn{
-      width: 44px;
-      padding: 0;
-    }
-
-    .iconsvg,
-    .iconbtn img{
-      width: 18px;
-      height: 18px;
-      display: block;
     }
 
     .avatar,
@@ -419,26 +353,6 @@
       text-align: center;
       padding: 20px;
       filter: none;
-    }
-
-    .tags{
-      margin-top: 24px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .tag{
-      display: inline-flex;
-      align-items: center;
-      min-height: 32px;
-      padding: 0 12px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      color: var(--muted);
-      background: color-mix(in srgb, var(--card-strong) 92%, transparent);
-      font-size: 13px;
-      font-weight: 700;
     }
 
     .content-card{
@@ -1156,10 +1070,6 @@
         height: 340px;
       }
 
-      .btn{
-        width: 100%;
-      }
-
       .education-tabs{
         gap: 8px;
       }
@@ -1200,7 +1110,7 @@
         <button type="button" data-slide="3">Publications</button>
         <button type="button" data-slide="4">Projects</button>
         <button type="button" data-slide="5">News</button>
-        <button type="button" data-slide="6">Honors</button>
+        <button type="button" data-slide="6">Employment</button>
         <button type="button" data-slide="7">Skills</button>
         <button type="button" data-slide="8">Contact</button>
       </nav>
@@ -1238,46 +1148,6 @@
                 <span>University of Southampton</span>
                 <span>Southampton, UK</span>
                 <span>Incoming PhD Student, Sept 2026</span>
-              </div>
-
-              <div class="hero-links">
-                <a class="btn btn-primary" href="mailto:by3n24@soton.ac.uk">Email</a>
-                <a class="btn" href="https://scholar.google.co.uk/citations?user=35xPgKQAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
-                <button class="btn" type="button" data-slide="4">View Projects</button>
-              </div>
-
-              <div class="hero-links" style="margin-top:12px;">
-                <div class="iconbar" aria-label="Profile links">
-                  <a class="iconbtn" href="https://github.com/HewittYu" target="_blank" rel="noopener" aria-label="GitHub">
-                    <svg class="iconsvg" viewBox="0 0 16 16" aria-hidden="true">
-                      <path fill="currentColor" d="M8 0C3.58 0 0 3.73 0 8.33c0 3.68 2.29 6.8 5.47 7.9.4.08.55-.18.55-.4 0-.2-.01-.85-.01-1.54-2.01.38-2.53-.5-2.69-.98-.09-.24-.48-.98-.82-1.18-.28-.16-.68-.56-.01-.58.63-.02 1.08.6 1.23.86.72 1.26 1.87.9 2.33.68.07-.54.28-.9.5-1.1-1.78-.2-3.64-.93-3.64-4.13 0-.92.31-1.67.82-2.26-.08-.21-.36-1.06.08-2.2 0 0 .67-.22 2.2.86a7.3 7.3 0 0 1 2-.28c.68 0 1.36.1 2 .28 1.53-1.08 2.2-.86 2.2-.86.44 1.14.16 2 .08 2.2.51.59.82 1.34.82 2.26 0 3.21-1.87 3.92-3.65 4.13.29.26.54.78.54 1.58 0 1.14-.01 2.06-.01 2.34 0 .22.15.49.55.4C13.71 15.13 16 12 16 8.33 16 3.73 12.42 0 8 0Z"/>
-                    </svg>
-                    <span class="sr-only">GitHub</span>
-                  </a>
-
-                  <a class="iconbtn" href="https://orcid.org/0009-0006-1540-5651" target="_blank" rel="noopener" aria-label="ORCID">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/ORCID_iD.svg/250px-ORCID_iD.svg.png" alt="" />
-                    <span class="sr-only">ORCID</span>
-                  </a>
-
-                  <a class="iconbtn" href="https://scholar.google.co.uk/citations?user=35xPgKQAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Google_Scholar_logo.svg/960px-Google_Scholar_logo.svg.png" alt="" />
-                    <span class="sr-only">Google Scholar</span>
-                  </a>
-
-                  <a class="iconbtn" href="https://www.linkedin.com/in/boyang-yu-b4963b340/" target="_blank" rel="noopener" aria-label="LinkedIn">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/LinkedIn_icon.svg/250px-LinkedIn_icon.svg.png" alt="" />
-                    <span class="sr-only">LinkedIn</span>
-                  </a>
-                </div>
-              </div>
-
-              <div class="tags">
-                <span class="tag">Digital Pathology</span>
-                <span class="tag">Human-in-the-Loop</span>
-                <span class="tag">Medical Segmentation</span>
-                <span class="tag">Multimodal Learning</span>
-                <span class="tag">Reliable AI</span>
               </div>
             </div>
 
@@ -1504,37 +1374,33 @@
         </div>
       </section>
 
-      <section class="slide" data-title="Honors">
+      <section class="slide" data-title="Employment">
         <div class="slide-inner">
           <div class="content-card">
-            <h2>Honors</h2>
+            <h2>Employment</h2>
             <p class="section-intro">
-              Selected awards and recognitions.
+              Professional experience in data engineering and AI-assisted research workflow development.
             </p>
 
             <div class="two-col">
               <div class="mini-card">
-                <h3>Awards</h3>
-                <ul>
-                  <li>
-                    <b>ECS Prize: Top MSc Project in Impact Potential</b> <span class="muted">(Nov 2025)</span><br />
-                    <span class="muted">University of Southampton, School of Electronics and Computer Science</span>
-                  </li>
+                <h3>Data Engineer</h3>
 
-                  <li>
-                    <b>SWUN Excellent Student</b> <span class="muted">(2021, 2022, 2023)</span>
-                  </li>
+                <div class="item">
+                  <div class="edu-kicker">May 2026 – Present · Guangzhou, China</div>
+                  <div class="edu-title">Guangzhou National Laboratory</div>
+                  <div class="edu-degree">Full-time Data Engineer</div>
 
-                  <li>
-                    <b>SWUN Scholarship, Second Class</b> <span class="muted">(2021, 2022, 2023)</span>
-                  </li>
-                </ul>
+                  <p class="edu-description">
+                    Working on data processing, information structuring, and AI-assisted workflow development for biomedical and research-related data tasks.
+                  </p>
+                </div>
               </div>
 
               <div class="mini-card">
-                <h3>Profile</h3>
+                <h3>Work Area</h3>
                 <p class="muted">
-                  Recognition mainly reflects research potential, project impact, and sustained academic performance across AI and medical image analysis.
+                  Data processing, information structuring, document analysis, and AI-assisted research workflow development.
                 </p>
               </div>
             </div>
