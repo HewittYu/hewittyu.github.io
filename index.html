@@ -8,205 +8,249 @@
 
   <style>
     :root{
-      --bg: #fcfcfd;
-      --card: rgba(255,255,255,0.88);
-      --card-strong: #ffffff;
-      --fg: #16181d;
-      --muted: #646b78;
-      --line: #e8ebf0;
-      --accent: #1f5eff;
-      --accent-soft: rgba(31,94,255,0.08);
-      --shadow: 0 10px 32px rgba(16,24,40,.08);
-      --shadow-soft: 0 4px 18px rgba(16,24,40,.06);
-      --radius: 18px;
-      --maxw: 1100px;
+      --bg: #f3f0d4;
+      --card: rgba(255, 252, 235, 0.88);
+      --card-strong: #fffbea;
+      --fg: #344b57;
+      --muted: rgba(52, 75, 87, 0.72);
+      --line: rgba(52, 75, 87, 0.16);
+      --accent: #d55c3b;
+      --accent-dark: #b9472e;
+      --accent-soft: rgba(213, 92, 59, 0.12);
+      --shadow: 0 18px 48px rgba(52, 75, 87, 0.16);
+      --shadow-soft: 0 8px 24px rgba(52, 75, 87, 0.10);
+      --radius: 22px;
+      --maxw: 1180px;
     }
 
     html[data-theme="dark"]{
-      --bg: #0f1115;
-      --card: rgba(21,24,31,0.9);
-      --card-strong: #171b22;
-      --fg: #f3f5f8;
-      --muted: #a6afbd;
-      --line: #2a303a;
-      --accent: #7aa2ff;
-      --accent-soft: rgba(122,162,255,0.14);
-      --shadow: 0 12px 36px rgba(0,0,0,.28);
-      --shadow-soft: 0 6px 20px rgba(0,0,0,.22);
+      --bg: #1f2c32;
+      --card: rgba(38, 54, 62, 0.92);
+      --card-strong: #26363e;
+      --fg: #f3f0d4;
+      --muted: rgba(243, 240, 212, 0.72);
+      --line: rgba(243, 240, 212, 0.16);
+      --accent: #e47a5f;
+      --accent-dark: #f09a82;
+      --accent-soft: rgba(228, 122, 95, 0.16);
+      --shadow: 0 18px 52px rgba(0, 0, 0, 0.36);
+      --shadow-soft: 0 8px 28px rgba(0, 0, 0, 0.26);
     }
 
-    *{ box-sizing:border-box; }
-    html{ scroll-behavior:smooth; }
+    *{
+      box-sizing: border-box;
+    }
+
+    html{
+      scroll-behavior: smooth;
+    }
+
     body{
-      margin:0;
+      margin: 0;
       background:
-        radial-gradient(circle at top left, rgba(31,94,255,.08), transparent 22%),
-        radial-gradient(circle at top right, rgba(109,40,217,.06), transparent 18%),
+        radial-gradient(circle at top left, rgba(213, 92, 59, 0.16), transparent 24%),
+        radial-gradient(circle at top right, rgba(52, 75, 87, 0.10), transparent 22%),
+        linear-gradient(180deg, rgba(255,255,255,0.25), transparent 360px),
         var(--bg);
-      color:var(--fg);
-      font: 16px/1.72 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      color: var(--fg);
+      font: 16px/1.72 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
-    a{ color:inherit; }
-    img{ max-width:100%; display:block; }
+    a{
+      color: inherit;
+    }
+
+    img{
+      max-width: 100%;
+      display: block;
+    }
 
     .topbar{
-      position:sticky;
-      top:0;
-      z-index:50;
-      backdrop-filter: blur(14px);
-      background: color-mix(in srgb, var(--bg) 78%, transparent);
-      border-bottom:1px solid color-mix(in srgb, var(--line) 88%, transparent);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+      border-bottom: 1px solid color-mix(in srgb, var(--line) 88%, transparent);
     }
 
     .topbar-inner{
-      max-width:var(--maxw);
-      margin:0 auto;
-      padding:14px 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
     }
 
     .brand{
-      font-weight:700;
-      letter-spacing:-0.02em;
-      text-decoration:none;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      text-decoration: none;
+      color: var(--fg);
+      white-space: nowrap;
     }
 
     .nav{
-      display:flex;
-      flex-wrap:wrap;
-      gap:14px;
-      align-items:center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      align-items: center;
+      justify-content: center;
     }
 
     .nav a{
-      text-decoration:none;
-      color:var(--muted);
-      font-size:14px;
-      transition:color .2s ease;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color .2s ease;
     }
 
     .nav a:hover,
-    .nav a:focus-visible{ color:var(--fg); }
+    .nav a:focus-visible{
+      color: var(--accent);
+    }
 
     .theme-toggle{
-      appearance:none;
-      border:1px solid var(--line);
-      background:var(--card-strong);
-      color:var(--fg);
-      width:40px;
-      height:40px;
-      border-radius:12px;
-      cursor:pointer;
+      appearance: none;
+      border: 1px solid var(--line);
+      background: var(--card-strong);
+      color: var(--fg);
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      cursor: pointer;
       box-shadow: var(--shadow-soft);
-      font-size:16px;
+      font-size: 16px;
+      flex: 0 0 auto;
+    }
+
+    .theme-toggle:hover{
+      border-color: color-mix(in srgb, var(--accent) 38%, var(--line));
     }
 
     .wrap{
-      max-width:var(--maxw);
-      margin:40px auto 56px;
-      padding:0 18px;
+      max-width: var(--maxw);
+      margin: 64px auto 60px;
+      padding: 0 22px;
     }
 
     .hero-card{
-      display:grid;
-      grid-template-columns: 160px 1fr;
-      gap:24px;
-      padding:24px;
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:24px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) 360px;
+      gap: 56px;
+      align-items: center;
+      padding: 64px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 32px;
       box-shadow: var(--shadow);
       backdrop-filter: blur(16px);
+      overflow: hidden;
+      position: relative;
     }
 
-    .avatar,
-    .avatar-fallback{
-      width:160px;
-      height:160px;
-      border-radius:22px;
-      border:1px solid var(--line);
-      object-fit:cover;
-      background:linear-gradient(145deg, color-mix(in srgb, var(--accent) 10%, var(--card-strong)), var(--card-strong));
-      box-shadow: var(--shadow-soft);
+    .hero-card::before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, rgba(213, 92, 59, 0.06), transparent 38%),
+        radial-gradient(circle at 82% 20%, rgba(52, 75, 87, 0.08), transparent 28%);
     }
 
-    .avatar-fallback{
-      display:none;
-      align-items:center;
-      justify-content:center;
-      color:var(--muted);
-      font-size:13px;
-      text-align:center;
-      padding:12px;
+    .hero-content,
+    .hero-visual{
+      position: relative;
+      z-index: 1;
     }
 
     .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:6px 12px;
-      border-radius:999px;
-      background:var(--accent-soft);
-      color:var(--accent);
-      font-size:13px;
-      font-weight:600;
-      margin-bottom:12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
     }
 
     h1{
-      margin:0;
-      font-size:36px;
-      line-height:1.15;
-      letter-spacing:-0.03em;
+      margin: 0;
+      font-size: clamp(46px, 7vw, 82px);
+      line-height: 0.98;
+      letter-spacing: -0.075em;
+      color: var(--fg);
     }
 
     .subtitle{
-      margin:10px 0 0;
-      color:var(--muted);
-      font-size:17px;
+      margin: 20px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.65;
+      max-width: 680px;
     }
 
     .hero-meta{
-      margin-top:14px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px 14px;
-      color:var(--muted);
-      font-size:14px;
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      color: var(--muted);
+      font-size: 14px;
     }
 
     .hero-meta span{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-meta span::before{
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+      opacity: 0.75;
     }
 
     .hero-links{
-      margin-top:18px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      align-items:center;
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
     }
 
     .btn,
     .iconbtn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      min-height:40px;
-      padding:0 14px;
-      border:1px solid var(--line);
-      border-radius:12px;
-      background:var(--card-strong);
-      text-decoration:none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 0 16px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: var(--card-strong);
+      text-decoration: none;
       box-shadow: var(--shadow-soft);
-      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
+      font-weight: 700;
+      font-size: 14px;
     }
 
     .btn:hover,
@@ -214,216 +258,518 @@
     .btn:focus-visible,
     .iconbtn:focus-visible{
       transform: translateY(-1px);
-      border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+      border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+      color: var(--accent);
     }
 
     .btn-primary{
-      background:var(--fg);
-      color:var(--bg);
-      border-color:transparent;
+      background: var(--accent);
+      color: #fffbea;
+      border-color: transparent;
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus-visible{
+      background: var(--accent-dark);
+      color: #fffbea;
     }
 
     .iconbar{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     .iconbtn{
-      width:40px;
-      padding:0;
+      width: 42px;
+      padding: 0;
     }
 
     .iconsvg,
     .iconbtn img{
-      width:18px;
-      height:18px;
-      display:block;
+      width: 18px;
+      height: 18px;
+      display: block;
+    }
+
+    .hero-visual{
+      display: flex;
+      justify-content: center;
+    }
+
+    .avatar,
+    .avatar-fallback{
+      width: 330px;
+      height: 410px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      object-fit: cover;
+      background:
+        linear-gradient(145deg, color-mix(in srgb, var(--accent) 10%, var(--card-strong)), var(--card-strong));
+      box-shadow: 0 20px 44px rgba(52, 75, 87, 0.18);
+      filter: grayscale(100%);
+    }
+
+    .avatar-fallback{
+      display: none;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+      padding: 18px;
+      filter: none;
     }
 
     .tags{
-      margin-top:16px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
+      margin-top: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     .tag{
-      display:inline-flex;
-      align-items:center;
-      min-height:32px;
-      padding:0 12px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      color:var(--muted);
-      background:color-mix(in srgb, var(--card-strong) 92%, transparent);
-      font-size:13px;
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      background: color-mix(in srgb, var(--card-strong) 92%, transparent);
+      font-size: 13px;
+      font-weight: 600;
     }
 
     .main-grid{
-      display:grid;
-      grid-template-columns: minmax(0, 1.22fr) minmax(290px, .78fr);
-      gap:18px;
-      margin-top:18px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.18fr) minmax(300px, .82fr);
+      gap: 22px;
+      margin-top: 22px;
     }
 
     .stack{
-      display:grid;
-      gap:18px;
+      display: grid;
+      gap: 22px;
     }
 
     .card{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      padding:20px;
-      box-shadow:var(--shadow-soft);
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--shadow-soft);
       backdrop-filter: blur(14px);
     }
 
     h2{
-      margin:0 0 12px;
-      font-size:19px;
-      letter-spacing:-0.02em;
+      margin: 0 0 16px;
+      font-size: 22px;
+      line-height: 1.2;
+      letter-spacing: -0.035em;
+      color: var(--fg);
     }
 
     h3{
-      margin:0;
-      font-size:16px;
-      letter-spacing:-0.01em;
+      margin: 0;
+      font-size: 17px;
+      letter-spacing: -0.01em;
     }
 
-    p{ margin:10px 0 0; }
-    ul{ margin:12px 0 0 18px; padding:0; }
-    li{ margin:8px 0; }
+    p{
+      margin: 11px 0 0;
+    }
 
-    .muted{ color:var(--muted); }
-    .small{ font-size:13px; }
+    ul{
+      margin: 12px 0 0 18px;
+      padding: 0;
+    }
+
+    li{
+      margin: 8px 0;
+    }
+
+    .muted{
+      color: var(--muted);
+    }
+
+    .small{
+      font-size: 13px;
+    }
 
     .item{
-      padding:14px 0;
-      border-top:1px solid var(--line);
+      padding: 16px 0;
+      border-top: 1px solid var(--line);
     }
 
     .item:first-child{
-      border-top:none;
-      padding-top:0;
+      border-top: none;
+      padding-top: 0;
     }
 
     .section-anchor{
-      scroll-margin-top:88px;
+      scroll-margin-top: 92px;
     }
 
     .edu-item,
     .timeline-item{
-      display:flex;
-      gap:14px;
-      align-items:flex-start;
-      padding:14px 0;
-      border-top:1px solid var(--line);
+      display: flex;
+      gap: 15px;
+      align-items: flex-start;
+      padding: 16px 0;
+      border-top: 1px solid var(--line);
     }
 
     .edu-item:first-child,
     .timeline-item:first-child{
-      border-top:none;
-      padding-top:0;
+      border-top: none;
+      padding-top: 0;
     }
 
     .edu-logo{
-      width:48px;
-      height:48px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      object-fit:cover;
-      background:var(--card-strong);
-      flex:0 0 auto;
+      width: 50px;
+      height: 50px;
+      border-radius: 13px;
+      border: 1px solid var(--line);
+      object-fit: cover;
+      background: var(--card-strong);
+      flex: 0 0 auto;
     }
 
     .edu-text,
-    .timeline-text{ flex:1 1 auto; }
-
-    .split-two{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:18px;
+    .timeline-text{
+      flex: 1 1 auto;
     }
 
     .pub-title,
     .proj-title{
-      font-weight:700;
+      font-weight: 800;
+      letter-spacing: -0.015em;
     }
 
     .inline-links{
-      margin-top:6px;
-      font-size:14px;
+      margin-top: 8px;
+      font-size: 14px;
     }
 
     .inline-links a{
-      text-decoration:none;
-      color:var(--accent);
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .inline-links a:hover{
+      text-decoration: underline;
     }
 
     .news-date{
-      font-weight:700;
-      min-width:74px;
-      display:inline-block;
+      font-weight: 800;
+      min-width: 78px;
+      display: inline-block;
+      color: var(--accent);
     }
 
     .contact-line{
-      margin-top:10px;
+      margin-top: 10px;
     }
 
     .contact-line a,
     .textlink{
-      color:var(--accent);
-      text-decoration:none;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
     }
 
     .contact-line a:hover,
-    .textlink:hover,
-    .inline-links a:hover{
-      text-decoration:underline;
+    .textlink:hover{
+      text-decoration: underline;
+    }
+
+    .project-list{
+      display: grid;
+      gap: 28px;
+      margin-top: 18px;
+    }
+
+    .project-card{
+      display: grid;
+      grid-template-columns: minmax(260px, 0.95fr) minmax(0, 1.05fr);
+      gap: 44px;
+      align-items: center;
+      padding: 38px;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background:
+        linear-gradient(135deg, color-mix(in srgb, var(--card-strong) 92%, transparent), color-mix(in srgb, var(--bg) 78%, transparent));
+      box-shadow: var(--shadow-soft);
+    }
+
+    .project-visual{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .project-image,
+    .project-image-placeholder{
+      width: 100%;
+      min-height: 260px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(213, 92, 59, 0.10), rgba(52, 75, 87, 0.08)),
+        var(--card-strong);
+      box-shadow: 0 16px 34px rgba(52, 75, 87, 0.10);
+    }
+
+    .project-image{
+      object-fit: cover;
+    }
+
+    .project-image-placeholder{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      padding: 24px;
+      border-style: dashed;
+    }
+
+    .project-content{
+      border-left: 2px solid color-mix(in srgb, var(--accent) 42%, var(--line));
+      padding-left: 34px;
+    }
+
+    .project-date{
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .project-content h3{
+      font-size: 28px;
+      line-height: 1.12;
+      letter-spacing: -0.04em;
+      margin: 0;
+      color: var(--fg);
+    }
+
+    .project-subtitle{
+      margin-top: 8px;
+      font-size: 16px;
+      color: var(--accent);
+      font-weight: 800;
+      line-height: 1.4;
+    }
+
+    .project-content p{
+      color: var(--muted);
+      margin-top: 14px;
+    }
+
+    .project-content ul{
+      color: var(--muted);
+      margin-top: 14px;
+    }
+
+    .project-tags{
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .project-tags span{
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--fg);
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
+    }
+
+    .skills-list{
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .skill-row{
+      padding: 12px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .skill-row:first-child{
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .skill-row b{
+      color: var(--fg);
     }
 
     .footer{
-      margin:24px 0 0;
-      color:var(--muted);
-      font-size:13px;
-      text-align:center;
+      margin: 28px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
     }
 
     .sr-only{
-      position:absolute;
-      width:1px;
-      height:1px;
-      padding:0;
-      margin:-1px;
-      overflow:hidden;
-      clip:rect(0,0,0,0);
-      white-space:nowrap;
-      border:0;
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
     }
 
-    @media (max-width: 920px){
-      .hero-card{ grid-template-columns: 1fr; }
-      .main-grid,
-      .split-two{ grid-template-columns: 1fr; }
-      .topbar-inner{ align-items:flex-start; }
+    @media (max-width: 980px){
+      .hero-card{
+        grid-template-columns: 1fr;
+        padding: 42px;
+      }
+
+      .hero-visual{
+        justify-content: flex-start;
+      }
+
+      .avatar,
+      .avatar-fallback{
+        width: 260px;
+        height: 320px;
+      }
+
+      .main-grid{
+        grid-template-columns: 1fr;
+      }
+
+      .project-card{
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .project-content{
+        border-left: none;
+        padding-left: 0;
+        border-top: 2px solid color-mix(in srgb, var(--accent) 42%, var(--line));
+        padding-top: 28px;
+      }
+
+      .topbar-inner{
+        align-items: flex-start;
+      }
     }
 
-    @media (max-width: 640px){
-      .wrap{ margin-top:24px; }
-      h1{ font-size:30px; }
-      .hero-card,
-      .card{ padding:18px; }
-      .nav{ gap:10px 12px; }
+    @media (max-width: 720px){
+      .wrap{
+        margin-top: 32px;
+        padding: 0 16px;
+      }
+
+      .topbar-inner{
+        padding: 12px 16px;
+        flex-wrap: wrap;
+      }
+
+      .nav{
+        order: 3;
+        width: 100%;
+        justify-content: flex-start;
+        gap: 10px 14px;
+      }
+
+      .nav a{
+        font-size: 12px;
+      }
+
+      .hero-card{
+        padding: 28px;
+        border-radius: 26px;
+      }
+
+      h1{
+        font-size: 46px;
+      }
+
+      .subtitle{
+        font-size: 16px;
+      }
+
+      .card{
+        padding: 22px;
+      }
+
+      .project-card{
+        padding: 24px;
+      }
+
+      .project-content h3{
+        font-size: 24px;
+      }
+
+      .project-image,
+      .project-image-placeholder{
+        min-height: 220px;
+      }
+    }
+
+    @media (max-width: 460px){
+      .hero-card{
+        padding: 22px;
+      }
+
+      h1{
+        font-size: 40px;
+      }
+
+      .avatar,
+      .avatar-fallback{
+        width: 100%;
+        height: 340px;
+      }
+
+      .btn{
+        width: 100%;
+      }
+
+      .project-card{
+        padding: 20px;
+      }
+
+      .project-image,
+      .project-image-placeholder{
+        min-height: 190px;
+      }
     }
   </style>
 </head>
+
 <body>
   <div class="topbar">
     <div class="topbar-inner">
       <a class="brand" href="#top">Boyang Yu</a>
+
       <nav class="nav" aria-label="Primary">
         <a href="#about">About</a>
         <a href="#education">Education</a>
@@ -433,26 +779,26 @@
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
       </nav>
+
       <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
     </div>
   </div>
 
   <main class="wrap" id="top">
     <section class="hero-card">
-      <div>
-        <img class="avatar" src="avatar.JPG" alt="Boyang Yu portrait" onerror="this.style.display='none'; document.getElementById('avatarFallback').style.display='flex';" />
-        <div id="avatarFallback" class="avatar-fallback">Add avatar.JPG to the repository root</div>
-      </div>
-
-      <div>
+      <div class="hero-content">
         <div class="eyebrow">Medical AI Researcher</div>
+
         <h1>Boyang Yu</h1>
-        <p class="subtitle">Digital Pathology · Human-in-the-Loop Learning · Multimodal Medical AI · Reliable Screening Systems</p>
+
+        <p class="subtitle">
+          Digital Pathology · Human-in-the-Loop Learning · Multimodal Medical AI · Reliable Screening Systems
+        </p>
 
         <div class="hero-meta">
           <span>University of Southampton</span>
           <span>Southampton, UK</span>
-          <span>Incoming PhD Student (Sept 2026)</span>
+          <span>Incoming PhD Student, Sept 2026</span>
         </div>
 
         <div class="hero-links">
@@ -489,12 +835,16 @@
 
         <div class="tags">
           <span class="tag">Digital Pathology</span>
-          <span class="tag">HITL</span>
-          <span class="tag">Segmentation</span>
+          <span class="tag">Human-in-the-Loop</span>
+          <span class="tag">Medical Segmentation</span>
           <span class="tag">Multimodal Learning</span>
-          <span class="tag">Medical Image Analysis</span>
           <span class="tag">Reliable AI</span>
         </div>
+      </div>
+
+      <div class="hero-visual">
+        <img class="avatar" src="avatar.JPG" alt="Boyang Yu portrait" onerror="this.style.display='none'; document.getElementById('avatarFallback').style.display='flex';" />
+        <div id="avatarFallback" class="avatar-fallback">Add avatar.JPG to the repository root</div>
       </div>
     </section>
 
@@ -502,12 +852,15 @@
       <div class="stack">
         <section id="about" class="card section-anchor">
           <h2>About</h2>
+
           <p>
             I am an incoming PhD student in the School of Electronics and Computer Science at the University of Southampton. My research focuses on Medical AI, with particular interests in digital pathology, human-in-the-loop learning, and multimodal methods for clinically useful screening and decision support.
           </p>
+
           <p>
             My recent work has centred on high-recall segmentation and screening systems designed to minimise missed lesions while maintaining practical utility. I am especially interested in reliable model design, uncertainty-aware workflows, expert-guided refinement, and the integration of image evidence with structured or weakly supervised signals.
           </p>
+
           <p class="muted">
             More broadly, I work on deep learning for medical image analysis, with emphasis on robustness, interpretability, and deployment-aware evaluation.
           </p>
@@ -520,7 +873,7 @@
             <img class="edu-logo" src="icons/uos.jpg" alt="University of Southampton logo" onerror="this.style.display='none';" />
             <div class="edu-text">
               <div><b>University of Southampton</b> <span class="muted">· Sept 2026 – present · Southampton, UK</span></div>
-              <div class="muted">PhD in Computer Science (incoming)</div>
+              <div class="muted">PhD in Computer Science, incoming</div>
             </div>
           </div>
 
@@ -528,7 +881,7 @@
             <img class="edu-logo" src="icons/uos.jpg" alt="University of Southampton logo" onerror="this.style.display='none';" />
             <div class="edu-text">
               <div><b>University of Southampton</b> <span class="muted">· Sept 2024 – Nov 2025 · Southampton, UK</span></div>
-              <div class="muted">MSc in Artificial Intelligence · Distinction (Average: 76.13)</div>
+              <div class="muted">MSc in Artificial Intelligence · Distinction, average: 76.13</div>
             </div>
           </div>
 
@@ -536,7 +889,7 @@
             <img class="edu-logo" src="icons/smu.jpg" alt="Southwest Minzu University logo" onerror="this.style.display='none';" />
             <div class="edu-text">
               <div><b>Southwest Minzu University</b> <span class="muted">· Oct 2020 – Jun 2024 · Chengdu, China</span></div>
-              <div class="muted">BEng in Artificial Intelligence · First Class Honours Equivalent (GPA: 3.61/4.00 | 88.52/100)</div>
+              <div class="muted">BEng in Artificial Intelligence · First Class Honours equivalent, GPA: 3.61/4.00 | 88.52/100</div>
             </div>
           </div>
         </section>
@@ -549,7 +902,9 @@
             <div class="pub-title">ClinSegNet: Towards Reliable and Enhanced Histopathology Screening</div>
             <div class="muted"><i>Bioengineering</i>, 2025, 12(11), 1156 · JCR Q2</div>
             <div class="small">Boyang Yu, Hannah Markham, Karwan Moutasim, Vipul Foria, Haiming Liu</div>
-            <div class="inline-links"><a href="https://doi.org/10.3390/bioengineering12111156" target="_blank" rel="noopener">DOI</a></div>
+            <div class="inline-links">
+              <a href="https://doi.org/10.3390/bioengineering12111156" target="_blank" rel="noopener">DOI</a>
+            </div>
           </div>
 
           <div class="item">
@@ -562,35 +917,117 @@
             <div class="pub-title">Efficient Classification of Malicious URLs: M-BERT-A Modified BERT Variant for Enhanced Semantic Understanding</div>
             <div class="muted"><i>IEEE Access</i>, 2024, 12: 13453–13468 · JCR Q2</div>
             <div class="small">Boyang Yu, Fei Tang, Daji Ergu, et al.</div>
-            <div class="inline-links"><a href="https://doi.org/10.1109/ACCESS.2024.3357095" target="_blank" rel="noopener">DOI</a></div>
+            <div class="inline-links">
+              <a href="https://doi.org/10.1109/ACCESS.2024.3357095" target="_blank" rel="noopener">DOI</a>
+            </div>
           </div>
         </section>
 
         <section id="projects" class="card section-anchor">
           <h2>Featured Projects</h2>
+          <p class="muted small">
+            Selected research projects in medical image analysis, digital pathology, and reliable AI systems.
+          </p>
 
-          <div class="item">
-            <div class="proj-title">ClinSegNet — High-Recall Histopathology Screening System</div>
-            <div class="muted">
-              A human-centric segmentation framework for histopathology screening, designed to prioritise recall and reduce missed lesions. The system combines organ-aware conditioning, SE-enhanced U-Net design, edge-aware supervision, and practical evaluation for reliable pre-diagnostic support.
-            </div>
-            <div class="inline-links">
-              <a href="https://scholar.google.co.uk/citations?user=35xPgKQAAAAJ&hl=en" target="_blank" rel="noopener">Paper</a>
-            </div>
-          </div>
+          <div class="project-list">
+            <article class="project-card">
+              <div class="project-visual">
+                <div class="project-image-placeholder">
+                  Project Figure Coming Soon
+                </div>
+              </div>
 
-          <div class="item">
-            <div class="proj-title">HMSA-SegNet — Parameter-Efficient Medical Image Segmentation</div>
-            <div class="muted">
-              A lightweight segmentation architecture integrating hierarchical multi-scale attention, adaptive multi-path feature extraction, and transformer-based interaction, achieving strong performance with a compact parameter budget.
-            </div>
-          </div>
+              <div class="project-content">
+                <div class="project-date">2025</div>
+                <h3>ClinSegNet</h3>
+                <div class="project-subtitle">High-Recall Histopathology Screening System</div>
 
-          <div class="item">
-            <div class="proj-title">Multi-modal Liver Image Segmentation on CHAOS</div>
-            <div class="muted">
-              Undergraduate thesis work on multi-modal liver image segmentation, exploring modified U-Net variants, attention mechanisms, and multimodal fusion strategies for improved robustness.
-            </div>
+                <p>
+                  A recall-oriented segmentation framework for histopathology screening, designed to reduce false negatives in pre-diagnostic clinical workflows.
+                </p>
+
+                <ul>
+                  <li>Developed an organ-aware conditional U-Net with SE attention.</li>
+                  <li>Introduced dilated-edge supervision for boundary refinement.</li>
+                  <li>Used Tversky-based optimisation to prioritise recall.</li>
+                  <li>Evaluated on multi-organ histopathology data derived from NuInsSeg.</li>
+                </ul>
+
+                <div class="project-tags">
+                  <span>Medical AI</span>
+                  <span>Digital Pathology</span>
+                  <span>Segmentation</span>
+                  <span>PyTorch</span>
+                </div>
+
+                <div class="inline-links">
+                  <a href="https://doi.org/10.3390/bioengineering12111156" target="_blank" rel="noopener">Paper</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-visual">
+                <div class="project-image-placeholder">
+                  Project Figure Coming Soon
+                </div>
+              </div>
+
+              <div class="project-content">
+                <div class="project-date">2025</div>
+                <h3>HMSA-SegNet</h3>
+                <div class="project-subtitle">Parameter-Efficient Medical Image Segmentation</div>
+
+                <p>
+                  A lightweight medical segmentation architecture based on hierarchical multi-scale attention and compact feature interaction.
+                </p>
+
+                <ul>
+                  <li>Designed for efficient medical image segmentation with a compact parameter budget.</li>
+                  <li>Combines multi-scale feature extraction with attention-guided representation learning.</li>
+                  <li>Targets stronger segmentation performance without excessive computational overhead.</li>
+                  <li>Accepted by IEEE ISPA 2025 as an oral presentation.</li>
+                </ul>
+
+                <div class="project-tags">
+                  <span>Medical Segmentation</span>
+                  <span>Attention</span>
+                  <span>Lightweight Model</span>
+                  <span>ISPA 2025</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-visual">
+                <div class="project-image-placeholder">
+                  Project Figure Coming Soon
+                </div>
+              </div>
+
+              <div class="project-content">
+                <div class="project-date">2024</div>
+                <h3>Multi-modal Liver Segmentation</h3>
+                <div class="project-subtitle">CHAOS-based Undergraduate Thesis Project</div>
+
+                <p>
+                  Undergraduate thesis work on multi-modal liver image segmentation, focusing on modified U-Net variants, attention mechanisms, and multimodal fusion strategies.
+                </p>
+
+                <ul>
+                  <li>Explored deep learning methods for liver segmentation from medical imaging data.</li>
+                  <li>Compared U-Net-based variants and attention-enhanced segmentation structures.</li>
+                  <li>Investigated multimodal fusion for improved robustness across imaging conditions.</li>
+                </ul>
+
+                <div class="project-tags">
+                  <span>CHAOS</span>
+                  <span>Liver Segmentation</span>
+                  <span>U-Net</span>
+                  <span>Medical Imaging</span>
+                </div>
+              </div>
+            </article>
           </div>
         </section>
       </div>
@@ -598,13 +1035,16 @@
       <div class="stack">
         <section class="card">
           <h2>News</h2>
+
           <div class="item">
             <div><span class="news-date">Nov 2025</span> ECS Prize awarded for Top MSc Project in the Impact Potential category.</div>
             <div class="muted small">University of Southampton, School of Electronics and Computer Science.</div>
           </div>
+
           <div class="item">
             <div><span class="news-date">Oct 2025</span> ClinSegNet published in <i>Bioengineering</i>.</div>
           </div>
+
           <div class="item">
             <div><span class="news-date">Oct 2025</span> HMSA-SegNet accepted by IEEE ISPA 2025 as an oral presentation.</div>
           </div>
@@ -612,35 +1052,68 @@
 
         <section id="honors" class="card section-anchor">
           <h2>Honors & Awards</h2>
+
           <ul>
             <li>
               <b>ECS Prize: Top MSc Project in Impact Potential</b> <span class="muted">(Nov 2025)</span><br />
               <span class="muted">University of Southampton, School of Electronics and Computer Science</span>
             </li>
+
             <li>
               <b>SWUN Excellent Student</b> <span class="muted">(2021, 2022, 2023)</span>
             </li>
+
             <li>
-              <b>SWUN Scholarship (Second Class)</b> <span class="muted">(2021, 2022, 2023)</span>
+              <b>SWUN Scholarship, Second Class</b> <span class="muted">(2021, 2022, 2023)</span>
             </li>
           </ul>
         </section>
 
         <section id="skills" class="card section-anchor">
           <h2>Skills</h2>
-          <ul>
-            <li><b>Programming:</b> Python, Java, C</li>
-            <li><b>Frameworks:</b> PyTorch, scikit-learn, OpenCV, NumPy, Pandas, Matplotlib</li>
-            <li><b>Research Areas:</b> Deep Learning, Computer Vision, Medical Image Analysis, Multimodal Learning</li>
-            <li><b>Tools:</b> LaTeX, Linux, Zotero, BibTeX, Git</li>
-          </ul>
+
+          <div class="skills-list">
+            <div class="skill-row">
+              <b>Programming:</b>
+              <span class="muted">Python, Java, C</span>
+            </div>
+
+            <div class="skill-row">
+              <b>Frameworks:</b>
+              <span class="muted">PyTorch, scikit-learn, OpenCV, NumPy, Pandas, Matplotlib</span>
+            </div>
+
+            <div class="skill-row">
+              <b>Research Areas:</b>
+              <span class="muted">Deep Learning, Computer Vision, Medical Image Analysis, Multimodal Learning</span>
+            </div>
+
+            <div class="skill-row">
+              <b>Tools:</b>
+              <span class="muted">LaTeX, Linux, Zotero, BibTeX, Git</span>
+            </div>
+          </div>
         </section>
 
         <section id="contact" class="card section-anchor">
           <h2>Contact</h2>
-          <div class="contact-line">Email: <a href="mailto:by3n24@soton.ac.uk">by3n24@soton.ac.uk</a></div>
-          <div class="contact-line">Supervisor: Assoc. Prof. Haiming Liu (<a href="mailto:H.Liu@soton.ac.uk">H.Liu@soton.ac.uk</a>)</div>
-          <div class="contact-line">Lab page: <a href="https://sites.google.com/view/haimingliu/home" target="_blank" rel="noopener">Haiming Liu</a></div>
+
+          <div class="contact-line">
+            Email:
+            <a href="mailto:by3n24@soton.ac.uk">by3n24@soton.ac.uk</a>
+          </div>
+
+          <div class="contact-line">
+            Supervisor:
+            Assoc. Prof. Haiming Liu
+            (<a href="mailto:H.Liu@soton.ac.uk">H.Liu@soton.ac.uk</a>)
+          </div>
+
+          <div class="contact-line">
+            Lab page:
+            <a href="https://sites.google.com/view/haimingliu/home" target="_blank" rel="noopener">Haiming Liu</a>
+          </div>
+
           <p class="muted small">
             Open to academic collaboration in digital pathology, human-in-the-loop workflows, multimodal triage, medical information retrieval, and reliable AI for pre-diagnostic support.
           </p>
@@ -658,6 +1131,7 @@
       const root = document.documentElement;
       const toggle = document.getElementById('themeToggle');
       const year = document.getElementById('year');
+
       year.textContent = new Date().getFullYear();
 
       function setTheme(theme) {
@@ -667,6 +1141,7 @@
 
       const savedTheme = localStorage.getItem('theme');
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
       setTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
 
       toggle.addEventListener('click', function() {
