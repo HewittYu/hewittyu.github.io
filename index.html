@@ -8,7 +8,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -21,12 +21,13 @@
       --accent: #d55c3b;
       --accent-dark: #b9472e;
       --accent-soft: rgba(213, 92, 59, 0.13);
+      --accent-blue-soft: #9fb8c2;
       --shadow: 0 22px 60px rgba(52, 75, 87, 0.16);
       --shadow-soft: 0 10px 28px rgba(52, 75, 87, 0.10);
       --radius: 26px;
       --maxw: 1220px;
       --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      --serif: "Playfair Display", Georgia, "Times New Roman", serif;
+      --serif: "Cormorant Garamond", Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif;
     }
 
     html[data-theme="dark"]{
@@ -39,6 +40,7 @@
       --accent: #e47a5f;
       --accent-dark: #f09a82;
       --accent-soft: rgba(228, 122, 95, 0.16);
+      --accent-blue-soft: #9fb9c2;
       --shadow: 0 22px 64px rgba(0, 0, 0, 0.38);
       --shadow-soft: 0 10px 32px rgba(0, 0, 0, 0.26);
     }
@@ -47,12 +49,15 @@
       box-sizing: border-box;
     }
 
-    html{
-      scroll-behavior: smooth;
+    html,
+    body{
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
     }
 
     body{
-      margin: 0;
       background:
         radial-gradient(circle at top left, rgba(213, 92, 59, 0.18), transparent 25%),
         radial-gradient(circle at top right, rgba(52, 75, 87, 0.12), transparent 24%),
@@ -64,7 +69,6 @@
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
-      overflow-x: hidden;
     }
 
     a{
@@ -76,10 +80,16 @@
       display: block;
     }
 
+    button{
+      font: inherit;
+    }
+
     .topbar{
-      position: sticky;
+      position: fixed;
       top: 0;
-      z-index: 50;
+      left: 0;
+      right: 0;
+      z-index: 60;
       backdrop-filter: blur(18px);
       background: color-mix(in srgb, var(--bg) 82%, transparent);
       border-bottom: 1px solid color-mix(in srgb, var(--line) 86%, transparent);
@@ -101,6 +111,12 @@
       text-decoration: none;
       color: var(--fg);
       white-space: nowrap;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      font-family: var(--sans);
+      font-size: 16px;
     }
 
     .nav{
@@ -111,18 +127,24 @@
       justify-content: center;
     }
 
-    .nav a{
-      text-decoration: none;
+    .nav button{
+      appearance: none;
+      border: none;
+      background: transparent;
+      padding: 0;
       color: var(--muted);
+      font-family: var(--sans);
       font-size: 12px;
       font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
+      cursor: pointer;
       transition: color .2s ease;
     }
 
-    .nav a:hover,
-    .nav a:focus-visible{
+    .nav button:hover,
+    .nav button:focus-visible,
+    .nav button.active{
       color: var(--accent);
     }
 
@@ -144,14 +166,39 @@
       border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
     }
 
-    .wrap{
+    .deck{
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .track{
+      height: 100%;
+      display: flex;
+      transition: transform .72s cubic-bezier(.2,.8,.2,1);
+      will-change: transform;
+    }
+
+    .slide{
+      min-width: 100vw;
+      height: 100vh;
+      padding: 92px 24px 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    .slide-inner{
+      width: 100%;
       max-width: var(--maxw);
-      margin: 54px auto 64px;
-      padding: 0 24px;
+      margin: 0 auto;
     }
 
     .hero-card{
-      min-height: 650px;
+      min-height: calc(100vh - 170px);
       display: grid;
       grid-template-columns: minmax(0, 1.08fr) 390px;
       gap: 72px;
@@ -211,12 +258,34 @@
     h1{
       margin: 0;
       font-family: var(--serif);
-      font-size: clamp(58px, 8.2vw, 112px);
-      line-height: 0.88;
-      letter-spacing: -0.065em;
+      font-size: clamp(60px, 8.4vw, 118px);
+      line-height: 0.86;
+      letter-spacing: -0.055em;
       color: var(--fg);
-      max-width: 760px;
-      font-weight: 800;
+      max-width: 780px;
+      font-weight: 700;
+    }
+
+    .hero-title-soft{
+      color: var(--accent-blue-soft);
+      font-style: italic;
+      font-weight: 600;
+    }
+
+    h2{
+      margin: 0 0 18px;
+      font-family: var(--serif);
+      font-size: clamp(46px, 6.2vw, 78px);
+      line-height: 0.95;
+      letter-spacing: -0.045em;
+      color: var(--fg);
+      font-weight: 700;
+    }
+
+    h3{
+      margin: 0;
+      font-size: 17px;
+      letter-spacing: -0.01em;
     }
 
     .hero-lead{
@@ -285,6 +354,8 @@
       transition: transform .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
       font-weight: 800;
       font-size: 14px;
+      cursor: pointer;
+      color: var(--fg);
     }
 
     .btn:hover,
@@ -370,54 +441,37 @@
       font-weight: 700;
     }
 
-    .main-grid{
-      display: grid;
-      grid-template-columns: minmax(0, 1.18fr) minmax(300px, .82fr);
-      gap: 24px;
-      margin-top: 24px;
-    }
-
-    .stack{
-      display: grid;
-      gap: 24px;
-    }
-
-    .card{
+    .content-card{
+      min-height: calc(100vh - 170px);
       background: var(--card);
       border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 30px;
-      box-shadow: var(--shadow-soft);
-      backdrop-filter: blur(14px);
+      border-radius: 36px;
+      padding: 48px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      overflow: hidden;
+      position: relative;
     }
 
-    h2{
-      margin: 0 0 18px;
-      font-family: var(--serif);
-      font-size: 42px;
-      line-height: 0.98;
-      letter-spacing: -0.055em;
-      color: var(--fg);
-      font-weight: 800;
+    .content-card::before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(135deg, rgba(213, 92, 59, 0.055), transparent 42%),
+        radial-gradient(circle at 88% 12%, rgba(52, 75, 87, 0.08), transparent 28%);
     }
 
-    h3{
-      margin: 0;
-      font-size: 17px;
-      letter-spacing: -0.01em;
+    .content-card > *{
+      position: relative;
+      z-index: 1;
     }
 
-    p{
-      margin: 11px 0 0;
-    }
-
-    ul{
-      margin: 14px 0 0 18px;
-      padding: 0;
-    }
-
-    li{
-      margin: 8px 0;
+    .section-intro{
+      max-width: 720px;
+      color: var(--muted);
+      margin: 0 0 28px;
     }
 
     .muted{
@@ -428,12 +482,8 @@
       font-size: 13px;
     }
 
-    .section-anchor{
-      scroll-margin-top: 94px;
-    }
-
     .item{
-      padding: 17px 0;
+      padding: 19px 0;
       border-top: 1px solid var(--line);
     }
 
@@ -467,7 +517,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
     .education-tab{
@@ -499,7 +549,7 @@
     .education-window{
       overflow: hidden;
       border: 1px solid var(--line);
-      border-radius: 22px;
+      border-radius: 26px;
       background: color-mix(in srgb, var(--card-strong) 82%, transparent);
     }
 
@@ -511,17 +561,17 @@
 
     .education-panel{
       width: calc(100% / 3);
-      padding: 30px;
+      padding: 40px;
       display: grid;
-      grid-template-columns: 78px minmax(0, 1fr);
-      gap: 22px;
+      grid-template-columns: 88px minmax(0, 1fr);
+      gap: 26px;
       align-items: flex-start;
     }
 
     .edu-logo{
-      width: 72px;
-      height: 72px;
-      border-radius: 18px;
+      width: 78px;
+      height: 78px;
+      border-radius: 20px;
       border: 1px solid var(--line);
       object-fit: cover;
       background: var(--card-strong);
@@ -538,22 +588,29 @@
     }
 
     .edu-title{
-      font-size: 24px;
-      line-height: 1.2;
+      font-size: 28px;
+      line-height: 1.15;
       font-weight: 900;
-      letter-spacing: -0.035em;
+      letter-spacing: -0.04em;
       color: var(--fg);
     }
 
     .edu-degree{
-      margin-top: 6px;
+      margin-top: 8px;
       color: var(--muted);
       font-weight: 700;
     }
 
     .edu-description{
-      margin-top: 14px;
+      margin-top: 16px;
       color: var(--muted);
+      max-width: 760px;
+    }
+
+    .publication-list{
+      display: grid;
+      gap: 8px;
+      max-width: 980px;
     }
 
     .project-stage{
@@ -578,7 +635,7 @@
 
     .project-image-placeholder{
       width: 100%;
-      min-height: 285px;
+      min-height: 300px;
       border-radius: 22px;
       border: 1px dashed color-mix(in srgb, var(--fg) 28%, transparent);
       background:
@@ -600,7 +657,7 @@
     .project-image-placeholder img{
       width: 100%;
       height: 100%;
-      min-height: 285px;
+      min-height: 300px;
       object-fit: cover;
       border-radius: 20px;
       display: block;
@@ -633,11 +690,11 @@
 
     .project-content h3{
       font-family: var(--serif);
-      font-size: 44px;
+      font-size: 46px;
       line-height: 0.98;
-      letter-spacing: -0.055em;
+      letter-spacing: -0.045em;
       color: var(--fg);
-      font-weight: 800;
+      font-weight: 700;
     }
 
     .project-subtitle{
@@ -651,6 +708,15 @@
     .project-content p,
     .project-content ul{
       color: var(--muted);
+    }
+
+    .project-content ul{
+      margin: 14px 0 0 18px;
+      padding: 0;
+    }
+
+    .project-content li{
+      margin: 8px 0;
     }
 
     .project-tags{
@@ -706,6 +772,30 @@
       animation: projectFromRight .42s cubic-bezier(.2,.8,.2,1) both;
     }
 
+    .two-col{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .mini-card{
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: color-mix(in srgb, var(--card-strong) 82%, transparent);
+      padding: 28px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .mini-card h3{
+      font-family: var(--serif);
+      font-size: 36px;
+      line-height: 1;
+      letter-spacing: -0.045em;
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+
     .news-date{
       font-weight: 900;
       min-width: 78px;
@@ -720,7 +810,7 @@
     }
 
     .skill-row{
-      padding: 12px 0;
+      padding: 14px 0;
       border-top: 1px solid var(--line);
     }
 
@@ -734,7 +824,7 @@
     }
 
     .contact-line{
-      margin-top: 10px;
+      margin-top: 12px;
     }
 
     .contact-line a,
@@ -749,11 +839,86 @@
       text-decoration: underline;
     }
 
-    .footer{
-      margin: 30px 0 0;
+    .arrow{
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 70;
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--card-strong) 88%, transparent);
+      color: var(--fg);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(14px);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: .2s ease;
+      font-size: 26px;
+      line-height: 1;
+    }
+
+    .arrow:hover{
+      transform: translateY(-50%) scale(1.04);
+      border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+      color: var(--accent);
+    }
+
+    .arrow-left{
+      left: 22px;
+    }
+
+    .arrow-right{
+      right: 22px;
+    }
+
+    .slide-indicator{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      z-index: 70;
+      display: flex;
+      gap: 9px;
+      padding: 10px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--card-strong) 82%, transparent);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .slide-dot{
+      appearance: none;
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      border: none;
+      background: color-mix(in srgb, var(--fg) 32%, transparent);
+      cursor: pointer;
+      transition: .22s ease;
+      padding: 0;
+    }
+
+    .slide-dot.active{
+      width: 28px;
+      background: var(--accent);
+    }
+
+    .page-label{
+      position: fixed;
+      right: 24px;
+      bottom: 22px;
+      z-index: 70;
       color: var(--muted);
-      font-size: 13px;
-      text-align: center;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      pointer-events: none;
     }
 
     .sr-only{
@@ -824,10 +989,6 @@
     }
 
     @media (prefers-reduced-motion: reduce){
-      html{
-        scroll-behavior: auto;
-      }
-
       *,
       *::before,
       *::after{
@@ -837,9 +998,10 @@
       }
     }
 
-    @media (max-width: 1040px){
+    @media (max-width: 1120px){
       .hero-card{
         grid-template-columns: 1fr;
+        min-height: auto;
         padding: 54px;
         gap: 42px;
       }
@@ -854,8 +1016,8 @@
         height: 380px;
       }
 
-      .main-grid{
-        grid-template-columns: 1fr;
+      .content-card{
+        min-height: auto;
       }
 
       .project-stage{
@@ -870,12 +1032,51 @@
         padding-top: 30px;
         min-height: auto;
       }
+
+      .two-col{
+        grid-template-columns: 1fr;
+      }
+
+      .arrow{
+        width: 46px;
+        height: 46px;
+      }
+
+      .arrow-left{
+        left: 12px;
+      }
+
+      .arrow-right{
+        right: 12px;
+      }
     }
 
     @media (max-width: 760px){
-      .wrap{
-        margin-top: 32px;
-        padding: 0 16px;
+      html,
+      body{
+        overflow: auto;
+      }
+
+      body{
+        overflow-x: hidden;
+      }
+
+      .deck{
+        height: auto;
+        overflow: visible;
+      }
+
+      .track{
+        display: block;
+        transform: none !important;
+      }
+
+      .slide{
+        min-width: 100%;
+        height: auto;
+        min-height: 100vh;
+        padding: 116px 16px 48px;
+        overflow: visible;
       }
 
       .topbar-inner{
@@ -890,30 +1091,30 @@
         gap: 10px 14px;
       }
 
-      .nav a{
+      .nav button{
         font-size: 11px;
       }
 
       .hero-card{
-        min-height: auto;
-        padding: 32px;
+        padding: 28px;
         border-radius: 28px;
       }
 
       h1{
-        font-size: 58px;
+        font-size: 54px;
+      }
+
+      h2{
+        font-size: 44px;
       }
 
       .hero-lead{
         font-size: 17px;
       }
 
-      h2{
-        font-size: 36px;
-      }
-
-      .card{
-        padding: 24px;
+      .content-card{
+        padding: 28px;
+        border-radius: 28px;
       }
 
       .education-panel{
@@ -926,11 +1127,17 @@
       }
 
       .project-content h3{
-        font-size: 36px;
+        font-size: 38px;
       }
 
       .project-image-placeholder{
         min-height: 220px;
+      }
+
+      .arrow,
+      .slide-indicator,
+      .page-label{
+        display: none;
       }
     }
 
@@ -940,7 +1147,7 @@
       }
 
       h1{
-        font-size: 48px;
+        font-size: 46px;
       }
 
       .avatar,
@@ -962,12 +1169,16 @@
         padding: 8px 12px;
       }
 
+      .content-card{
+        padding: 22px;
+      }
+
       .project-stage{
         padding: 20px;
       }
 
       .project-content h3{
-        font-size: 32px;
+        font-size: 34px;
       }
 
       .project-image-placeholder{
@@ -980,342 +1191,479 @@
 <body>
   <div class="topbar">
     <div class="topbar-inner">
-      <a class="brand" href="#top">Boyang Yu</a>
+      <button class="brand" type="button" data-slide="0">Boyang Yu</button>
 
       <nav class="nav" aria-label="Primary">
-        <a href="#about">About</a>
-        <a href="#education">Education</a>
-        <a href="#publications">Publications</a>
-        <a href="#projects">Projects</a>
-        <a href="#honors">Honors</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
+        <button type="button" data-slide="0" class="active">Home</button>
+        <button type="button" data-slide="1">About</button>
+        <button type="button" data-slide="2">Education</button>
+        <button type="button" data-slide="3">Publications</button>
+        <button type="button" data-slide="4">Projects</button>
+        <button type="button" data-slide="5">News</button>
+        <button type="button" data-slide="6">Honors</button>
+        <button type="button" data-slide="7">Skills</button>
+        <button type="button" data-slide="8">Contact</button>
       </nav>
 
       <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle colour theme" title="Toggle colour theme">◐</button>
     </div>
   </div>
 
-  <main class="wrap" id="top">
-    <section class="hero-card">
-      <div class="hero-content">
-        <div class="eyebrow">Medical AI · Digital Pathology · HITL</div>
+  <button class="arrow arrow-left" id="prevSlide" type="button" aria-label="Previous section">‹</button>
+  <button class="arrow arrow-right" id="nextSlide" type="button" aria-label="Next section">›</button>
 
-        <h1>
-          Building the Future<br>
-          of Human-Centred<br>
-          Medical AI.
-        </h1>
+  <div class="deck">
+    <div class="track" id="slideTrack">
 
-        <p class="hero-lead">
-          I am <span class="strong">Boyang Yu</span>, an incoming PhD student at the
-          <span class="strong">University of Southampton</span>. My work explores
-          <span class="accent">high-recall medical image analysis</span>,
-          <span class="accent">human-in-the-loop learning</span>, and multimodal systems for real-world clinical screening.
-        </p>
+      <section class="slide" data-title="Home">
+        <div class="slide-inner">
+          <div class="hero-card">
+            <div class="hero-content">
+              <div class="eyebrow">Medical AI · Digital Pathology · HITL</div>
 
-        <div class="hero-meta">
-          <span>University of Southampton</span>
-          <span>Southampton, UK</span>
-          <span>Incoming PhD Student, Sept 2026</span>
-        </div>
+              <h1>
+                Building the Future<br>
+                of <span class="hero-title-soft">Human-Centred<br>
+                Medical AI.</span>
+              </h1>
 
-        <div class="hero-links">
-          <a class="btn btn-primary" href="mailto:by3n24@soton.ac.uk">Email</a>
-          <a class="btn" href="https://scholar.google.co.uk/citations?user=35xPgKQAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
-          <a class="btn" href="#projects">View Projects</a>
-        </div>
-
-        <div class="hero-links" style="margin-top:12px;">
-          <div class="iconbar" aria-label="Profile links">
-            <a class="iconbtn" href="https://github.com/HewittYu" target="_blank" rel="noopener" aria-label="GitHub">
-              <svg class="iconsvg" viewBox="0 0 16 16" aria-hidden="true">
-                <path fill="currentColor" d="M8 0C3.58 0 0 3.73 0 8.33c0 3.68 2.29 6.8 5.47 7.9.4.08.55-.18.55-.4 0-.2-.01-.85-.01-1.54-2.01.38-2.53-.5-2.69-.98-.09-.24-.48-.98-.82-1.18-.28-.16-.68-.56-.01-.58.63-.02 1.08.6 1.23.86.72 1.26 1.87.9 2.33.68.07-.54.28-.9.5-1.1-1.78-.2-3.64-.93-3.64-4.13 0-.92.31-1.67.82-2.26-.08-.21-.36-1.06.08-2.2 0 0 .67-.22 2.2.86a7.3 7.3 0 0 1 2-.28c.68 0 1.36.1 2 .28 1.53-1.08 2.2-.86 2.2-.86.44 1.14.16 2 .08 2.2.51.59.82 1.34.82 2.26 0 3.21-1.87 3.92-3.65 4.13.29.26.54.78.54 1.58 0 1.14-.01 2.06-.01 2.34 0 .22.15.49.55.4C13.71 15.13 16 12 16 8.33 16 3.73 12.42 0 8 0Z"/>
-              </svg>
-              <span class="sr-only">GitHub</span>
-            </a>
-
-            <a class="iconbtn" href="https://orcid.org/0009-0006-1540-5651" target="_blank" rel="noopener" aria-label="ORCID">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/ORCID_iD.svg/250px-ORCID_iD.svg.png" alt="" />
-              <span class="sr-only">ORCID</span>
-            </a>
-
-            <a class="iconbtn" href="https://scholar.google.co.uk/citations?user=35xPgKQAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Google_Scholar_logo.svg/960px-Google_Scholar_logo.svg.png" alt="" />
-              <span class="sr-only">Google Scholar</span>
-            </a>
-
-            <a class="iconbtn" href="https://www.linkedin.com/in/boyang-yu-b4963b340/" target="_blank" rel="noopener" aria-label="LinkedIn">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/LinkedIn_icon.svg/250px-LinkedIn_icon.svg.png" alt="" />
-              <span class="sr-only">LinkedIn</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="tags">
-          <span class="tag">Digital Pathology</span>
-          <span class="tag">Human-in-the-Loop</span>
-          <span class="tag">Medical Segmentation</span>
-          <span class="tag">Multimodal Learning</span>
-          <span class="tag">Reliable AI</span>
-        </div>
-      </div>
-
-      <div class="hero-visual">
-        <img class="avatar" src="avatar.JPG" alt="Boyang Yu portrait" onerror="this.style.display='none'; document.getElementById('avatarFallback').style.display='flex';" />
-        <div id="avatarFallback" class="avatar-fallback">Add avatar.JPG to the repository root</div>
-      </div>
-    </section>
-
-    <div class="main-grid">
-      <div class="stack">
-        <section id="about" class="card section-anchor">
-          <h2>About</h2>
-
-          <p>
-            I am an incoming PhD student in the School of Electronics and Computer Science at the University of Southampton. My research focuses on Medical AI, with particular interests in digital pathology, human-in-the-loop learning, and multimodal methods for clinically useful screening and decision support.
-          </p>
-
-          <p>
-            My recent work has centred on high-recall segmentation and screening systems designed to minimise missed lesions while maintaining practical utility. I am especially interested in reliable model design, uncertainty-aware workflows, expert-guided refinement, and the integration of image evidence with structured or weakly supervised signals.
-          </p>
-
-          <p class="muted">
-            More broadly, I work on deep learning for medical image analysis, with emphasis on robustness, interpretability, and deployment-aware evaluation.
-          </p>
-        </section>
-
-        <section id="education" class="card section-anchor">
-          <h2>Education</h2>
-
-          <div class="education-tabs" role="tablist" aria-label="Education tabs">
-            <button class="education-tab active" type="button" data-edu="0">PhD</button>
-            <button class="education-tab" type="button" data-edu="1">MSc</button>
-            <button class="education-tab" type="button" data-edu="2">BEng</button>
-          </div>
-
-          <div class="education-window">
-            <div class="education-track" id="educationTrack">
-              <article class="education-panel">
-                <img class="edu-logo" src="icons/uos.jpg" alt="University of Southampton logo" onerror="this.style.display='none';" />
-                <div>
-                  <div class="edu-kicker">Sept 2026 – Present · Southampton, UK</div>
-                  <div class="edu-title">University of Southampton</div>
-                  <div class="edu-degree">PhD in Computer Science, incoming</div>
-                  <p class="edu-description">
-                    Research direction: Medical AI, digital pathology, human-in-the-loop learning, multimodal learning, and reliable AI for pre-diagnostic clinical workflows.
-                  </p>
-                </div>
-              </article>
-
-              <article class="education-panel">
-                <img class="edu-logo" src="icons/uos.jpg" alt="University of Southampton logo" onerror="this.style.display='none';" />
-                <div>
-                  <div class="edu-kicker">Sept 2024 – Nov 2025 · Southampton, UK</div>
-                  <div class="edu-title">University of Southampton</div>
-                  <div class="edu-degree">MSc in Artificial Intelligence · Distinction, average: 76.13</div>
-                  <p class="edu-description">
-                    MSc project focused on high-recall histopathology segmentation and screening-oriented model design, later developed into ClinSegNet.
-                  </p>
-                </div>
-              </article>
-
-              <article class="education-panel">
-                <img class="edu-logo" src="icons/smu.jpg" alt="Southwest Minzu University logo" onerror="this.style.display='none';" />
-                <div>
-                  <div class="edu-kicker">Oct 2020 – Jun 2024 · Chengdu, China</div>
-                  <div class="edu-title">Southwest Minzu University</div>
-                  <div class="edu-degree">BEng in Artificial Intelligence · GPA: 3.61/4.00 | 88.52/100</div>
-                  <p class="edu-description">
-                    Undergraduate thesis explored multi-modal liver image segmentation using CHAOS, modified U-Net variants, attention mechanisms, and multimodal fusion strategies.
-                  </p>
-                </div>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <section id="publications" class="card section-anchor">
-          <h2>Selected Publications</h2>
-          <p class="muted small">A fuller publication list is available on Google Scholar.</p>
-
-          <div class="item">
-            <div class="pub-title">ClinSegNet: Towards Reliable and Enhanced Histopathology Screening</div>
-            <div class="muted"><i>Bioengineering</i>, 2025, 12(11), 1156 · JCR Q2</div>
-            <div class="small">Boyang Yu, Hannah Markham, Karwan Moutasim, Vipul Foria, Haiming Liu</div>
-            <div class="inline-links">
-              <a href="https://doi.org/10.3390/bioengineering12111156" target="_blank" rel="noopener">DOI</a>
-            </div>
-          </div>
-
-          <div class="item">
-            <div class="pub-title">HMSA-SegNet: A Parameter-Efficient Architecture with Hierarchical Multi-Scale Attention for Medical Image Segmentation</div>
-            <div class="muted"><i>IEEE ISPA</i>, 2025 · Oral presentation</div>
-            <div class="small">Boyang Yu, Hong Seng Gan, Zijun Chen, et al.</div>
-          </div>
-
-          <div class="item">
-            <div class="pub-title">Efficient Classification of Malicious URLs: M-BERT-A Modified BERT Variant for Enhanced Semantic Understanding</div>
-            <div class="muted"><i>IEEE Access</i>, 2024, 12: 13453–13468 · JCR Q2</div>
-            <div class="small">Boyang Yu, Fei Tang, Daji Ergu, et al.</div>
-            <div class="inline-links">
-              <a href="https://doi.org/10.1109/ACCESS.2024.3357095" target="_blank" rel="noopener">DOI</a>
-            </div>
-          </div>
-        </section>
-
-        <section id="projects" class="card section-anchor">
-          <h2>Featured Projects</h2>
-          <p class="muted small">
-            Selected research projects in medical image analysis, digital pathology, and reliable AI systems.
-          </p>
-
-          <article class="project-stage" id="projectStage">
-            <div class="project-visual">
-              <div class="project-image-placeholder" id="projectFigure">
-                Project Figure Coming Soon
-              </div>
-            </div>
-
-            <div class="project-content">
-              <div class="project-date" id="projectDate">2025</div>
-              <h3 id="projectTitle">ClinSegNet</h3>
-              <div class="project-subtitle" id="projectSubtitle">High-Recall Histopathology Screening System</div>
-
-              <p id="projectDescription">
-                A recall-oriented segmentation framework for histopathology screening, designed to reduce false negatives in pre-diagnostic clinical workflows.
+              <p class="hero-lead">
+                I am <span class="strong">Boyang Yu</span>, an incoming PhD student at the
+                <span class="strong">University of Southampton</span>. My work explores
+                <span class="accent">high-recall medical image analysis</span>,
+                <span class="accent">human-in-the-loop learning</span>, and multimodal systems for real-world clinical screening.
               </p>
 
-              <ul id="projectBullets">
-                <li>Developed an organ-aware conditional U-Net with SE attention.</li>
-                <li>Introduced dilated-edge supervision for boundary refinement.</li>
-                <li>Used Tversky-based optimisation to prioritise recall.</li>
-                <li>Evaluated on multi-organ histopathology data derived from NuInsSeg.</li>
-              </ul>
-
-              <div class="project-tags" id="projectTags">
-                <span>Medical AI</span>
-                <span>Digital Pathology</span>
-                <span>Segmentation</span>
-                <span>PyTorch</span>
+              <div class="hero-meta">
+                <span>University of Southampton</span>
+                <span>Southampton, UK</span>
+                <span>Incoming PhD Student, Sept 2026</span>
               </div>
 
-              <div class="inline-links" id="projectLinks">
-                <a href="https://doi.org/10.3390/bioengineering12111156" target="_blank" rel="noopener">Paper</a>
+              <div class="hero-links">
+                <a class="btn btn-primary" href="mailto:by3n24@soton.ac.uk">Email</a>
+                <a class="btn" href="https://scholar.google.co.uk/citations?user=35xPgKQAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+                <button class="btn" type="button" data-slide="4">View Projects</button>
+              </div>
+
+              <div class="hero-links" style="margin-top:12px;">
+                <div class="iconbar" aria-label="Profile links">
+                  <a class="iconbtn" href="https://github.com/HewittYu" target="_blank" rel="noopener" aria-label="GitHub">
+                    <svg class="iconsvg" viewBox="0 0 16 16" aria-hidden="true">
+                      <path fill="currentColor" d="M8 0C3.58 0 0 3.73 0 8.33c0 3.68 2.29 6.8 5.47 7.9.4.08.55-.18.55-.4 0-.2-.01-.85-.01-1.54-2.01.38-2.53-.5-2.69-.98-.09-.24-.48-.98-.82-1.18-.28-.16-.68-.56-.01-.58.63-.02 1.08.6 1.23.86.72 1.26 1.87.9 2.33.68.07-.54.28-.9.5-1.1-1.78-.2-3.64-.93-3.64-4.13 0-.92.31-1.67.82-2.26-.08-.21-.36-1.06.08-2.2 0 0 .67-.22 2.2.86a7.3 7.3 0 0 1 2-.28c.68 0 1.36.1 2 .28 1.53-1.08 2.2-.86 2.2-.86.44 1.14.16 2 .08 2.2.51.59.82 1.34.82 2.26 0 3.21-1.87 3.92-3.65 4.13.29.26.54.78.54 1.58 0 1.14-.01 2.06-.01 2.34 0 .22.15.49.55.4C13.71 15.13 16 12 16 8.33 16 3.73 12.42 0 8 0Z"/>
+                    </svg>
+                    <span class="sr-only">GitHub</span>
+                  </a>
+
+                  <a class="iconbtn" href="https://orcid.org/0009-0006-1540-5651" target="_blank" rel="noopener" aria-label="ORCID">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/ORCID_iD.svg/250px-ORCID_iD.svg.png" alt="" />
+                    <span class="sr-only">ORCID</span>
+                  </a>
+
+                  <a class="iconbtn" href="https://scholar.google.co.uk/citations?user=35xPgKQAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Google_Scholar_logo.svg/960px-Google_Scholar_logo.svg.png" alt="" />
+                    <span class="sr-only">Google Scholar</span>
+                  </a>
+
+                  <a class="iconbtn" href="https://www.linkedin.com/in/boyang-yu-b4963b340/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/LinkedIn_icon.svg/250px-LinkedIn_icon.svg.png" alt="" />
+                    <span class="sr-only">LinkedIn</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="tags">
+                <span class="tag">Digital Pathology</span>
+                <span class="tag">Human-in-the-Loop</span>
+                <span class="tag">Medical Segmentation</span>
+                <span class="tag">Multimodal Learning</span>
+                <span class="tag">Reliable AI</span>
               </div>
             </div>
-          </article>
 
-          <div class="project-dots" aria-label="Project selector">
-            <button class="project-dot active" type="button" data-project="0" aria-label="Show ClinSegNet"></button>
-            <button class="project-dot" type="button" data-project="1" aria-label="Show HMSA-SegNet"></button>
-            <button class="project-dot" type="button" data-project="2" aria-label="Show Multi-modal Liver Segmentation"></button>
-            <button class="project-dot" type="button" data-project="3" aria-label="Show LLM Report Structuring"></button>
-          </div>
-        </section>
-      </div>
-
-      <div class="stack">
-        <section class="card">
-          <h2>News</h2>
-
-          <div class="item">
-            <div><span class="news-date">Nov 2025</span> ECS Prize awarded for Top MSc Project in the Impact Potential category.</div>
-            <div class="muted small">University of Southampton, School of Electronics and Computer Science.</div>
-          </div>
-
-          <div class="item">
-            <div><span class="news-date">Oct 2025</span> ClinSegNet published in <i>Bioengineering</i>.</div>
-          </div>
-
-          <div class="item">
-            <div><span class="news-date">Oct 2025</span> HMSA-SegNet accepted by IEEE ISPA 2025 as an oral presentation.</div>
-          </div>
-        </section>
-
-        <section id="honors" class="card section-anchor">
-          <h2>Honors</h2>
-
-          <ul>
-            <li>
-              <b>ECS Prize: Top MSc Project in Impact Potential</b> <span class="muted">(Nov 2025)</span><br />
-              <span class="muted">University of Southampton, School of Electronics and Computer Science</span>
-            </li>
-
-            <li>
-              <b>SWUN Excellent Student</b> <span class="muted">(2021, 2022, 2023)</span>
-            </li>
-
-            <li>
-              <b>SWUN Scholarship, Second Class</b> <span class="muted">(2021, 2022, 2023)</span>
-            </li>
-          </ul>
-        </section>
-
-        <section id="skills" class="card section-anchor">
-          <h2>Skills</h2>
-
-          <div class="skills-list">
-            <div class="skill-row">
-              <b>Programming:</b>
-              <span class="muted">Python, Java, C</span>
-            </div>
-
-            <div class="skill-row">
-              <b>Frameworks:</b>
-              <span class="muted">PyTorch, scikit-learn, OpenCV, NumPy, Pandas, Matplotlib</span>
-            </div>
-
-            <div class="skill-row">
-              <b>Research Areas:</b>
-              <span class="muted">Deep Learning, Computer Vision, Medical Image Analysis, Multimodal Learning</span>
-            </div>
-
-            <div class="skill-row">
-              <b>Tools:</b>
-              <span class="muted">LaTeX, Linux, Zotero, BibTeX, Git</span>
+            <div class="hero-visual">
+              <img class="avatar" src="avatar.JPG" alt="Boyang Yu portrait" onerror="this.style.display='none'; document.getElementById('avatarFallback').style.display='flex';" />
+              <div id="avatarFallback" class="avatar-fallback">Add avatar.JPG to the repository root</div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section id="contact" class="card section-anchor">
-          <h2>Contact</h2>
+      <section class="slide" data-title="About">
+        <div class="slide-inner">
+          <div class="content-card">
+            <h2>About</h2>
+            <p class="section-intro">
+              My work sits at the intersection of medical image analysis, digital pathology, and human-centred clinical AI.
+            </p>
 
-          <div class="contact-line">
-            Email:
-            <a href="mailto:by3n24@soton.ac.uk">by3n24@soton.ac.uk</a>
+            <div class="two-col">
+              <div class="mini-card">
+                <h3>Research Focus</h3>
+                <p>
+                  I am an incoming PhD student in the School of Electronics and Computer Science at the University of Southampton. My research focuses on Medical AI, with particular interests in digital pathology, human-in-the-loop learning, and multimodal methods for clinically useful screening and decision support.
+                </p>
+              </div>
+
+              <div class="mini-card">
+                <h3>Current Direction</h3>
+                <p>
+                  My recent work has centred on high-recall segmentation and screening systems designed to minimise missed lesions while maintaining practical utility. I am especially interested in reliable model design, uncertainty-aware workflows, expert-guided refinement, and the integration of image evidence with structured or weakly supervised signals.
+                </p>
+                <p class="muted">
+                  More broadly, I work on deep learning for medical image analysis, with emphasis on robustness, interpretability, and deployment-aware evaluation.
+                </p>
+              </div>
+            </div>
           </div>
+        </div>
+      </section>
 
-          <div class="contact-line">
-            Supervisor:
-            Assoc. Prof. Haiming Liu
-            (<a href="mailto:H.Liu@soton.ac.uk">H.Liu@soton.ac.uk</a>)
+      <section class="slide" data-title="Education">
+        <div class="slide-inner">
+          <div class="content-card">
+            <h2>Education</h2>
+            <p class="section-intro">
+              Academic training across artificial intelligence, medical image analysis, and computer science.
+            </p>
+
+            <div class="education-tabs" role="tablist" aria-label="Education tabs">
+              <button class="education-tab active" type="button" data-edu="0">PhD</button>
+              <button class="education-tab" type="button" data-edu="1">MSc</button>
+              <button class="education-tab" type="button" data-edu="2">BEng</button>
+            </div>
+
+            <div class="education-window">
+              <div class="education-track" id="educationTrack">
+                <article class="education-panel">
+                  <img class="edu-logo" src="icons/uos.jpg" alt="University of Southampton logo" onerror="this.style.display='none';" />
+                  <div>
+                    <div class="edu-kicker">Sept 2026 – Present · Southampton, UK</div>
+                    <div class="edu-title">University of Southampton</div>
+                    <div class="edu-degree">PhD in Computer Science, incoming</div>
+                    <p class="edu-description">
+                      Research direction: Medical AI, digital pathology, human-in-the-loop learning, multimodal learning, and reliable AI for pre-diagnostic clinical workflows.
+                    </p>
+                  </div>
+                </article>
+
+                <article class="education-panel">
+                  <img class="edu-logo" src="icons/uos.jpg" alt="University of Southampton logo" onerror="this.style.display='none';" />
+                  <div>
+                    <div class="edu-kicker">Sept 2024 – Nov 2025 · Southampton, UK</div>
+                    <div class="edu-title">University of Southampton</div>
+                    <div class="edu-degree">MSc in Artificial Intelligence · Distinction, average: 76.13</div>
+                    <p class="edu-description">
+                      MSc project focused on high-recall histopathology segmentation and screening-oriented model design, later developed into ClinSegNet.
+                    </p>
+                  </div>
+                </article>
+
+                <article class="education-panel">
+                  <img class="edu-logo" src="icons/smu.jpg" alt="Southwest Minzu University logo" onerror="this.style.display='none';" />
+                  <div>
+                    <div class="edu-kicker">Oct 2020 – Jun 2024 · Chengdu, China</div>
+                    <div class="edu-title">Southwest Minzu University</div>
+                    <div class="edu-degree">BEng in Artificial Intelligence · GPA: 3.61/4.00 | 88.52/100</div>
+                    <p class="edu-description">
+                      Undergraduate thesis explored multi-modal liver image segmentation using CHAOS, modified U-Net variants, attention mechanisms, and multimodal fusion strategies.
+                    </p>
+                  </div>
+                </article>
+              </div>
+            </div>
           </div>
+        </div>
+      </section>
 
-          <div class="contact-line">
-            Lab page:
-            <a href="https://sites.google.com/view/haimingliu/home" target="_blank" rel="noopener">Haiming Liu</a>
+      <section class="slide" data-title="Publications">
+        <div class="slide-inner">
+          <div class="content-card">
+            <h2>Selected Publications</h2>
+            <p class="section-intro">
+              A fuller publication list is available on Google Scholar.
+            </p>
+
+            <div class="publication-list">
+              <div class="item">
+                <div class="pub-title">ClinSegNet: Towards Reliable and Enhanced Histopathology Screening</div>
+                <div class="muted"><i>Bioengineering</i>, 2025, 12(11), 1156 · JCR Q2</div>
+                <div class="small">Boyang Yu, Hannah Markham, Karwan Moutasim, Vipul Foria, Haiming Liu</div>
+                <div class="inline-links">
+                  <a href="https://doi.org/10.3390/bioengineering12111156" target="_blank" rel="noopener">DOI</a>
+                </div>
+              </div>
+
+              <div class="item">
+                <div class="pub-title">HMSA-SegNet: A Parameter-Efficient Architecture with Hierarchical Multi-Scale Attention for Medical Image Segmentation</div>
+                <div class="muted"><i>IEEE ISPA</i>, 2025 · Oral presentation</div>
+                <div class="small">Boyang Yu, Hong Seng Gan, Zijun Chen, et al.</div>
+              </div>
+
+              <div class="item">
+                <div class="pub-title">Efficient Classification of Malicious URLs: M-BERT-A Modified BERT Variant for Enhanced Semantic Understanding</div>
+                <div class="muted"><i>IEEE Access</i>, 2024, 12: 13453–13468 · JCR Q2</div>
+                <div class="small">Boyang Yu, Fei Tang, Daji Ergu, et al.</div>
+                <div class="inline-links">
+                  <a href="https://doi.org/10.1109/ACCESS.2024.3357095" target="_blank" rel="noopener">DOI</a>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+      </section>
 
-          <p class="muted small">
-            Open to academic collaboration in digital pathology, human-in-the-loop workflows, multimodal triage, medical information retrieval, and reliable AI for pre-diagnostic support.
-          </p>
-        </section>
-      </div>
+      <section class="slide" data-title="Projects">
+        <div class="slide-inner">
+          <div class="content-card">
+            <h2>Featured Projects</h2>
+            <p class="section-intro">
+              Selected research projects in medical image analysis, digital pathology, and reliable AI systems.
+            </p>
+
+            <article class="project-stage" id="projectStage">
+              <div class="project-visual">
+                <div class="project-image-placeholder" id="projectFigure">
+                  Project Figure Coming Soon
+                </div>
+              </div>
+
+              <div class="project-content">
+                <div class="project-date" id="projectDate">2025</div>
+                <h3 id="projectTitle">ClinSegNet</h3>
+                <div class="project-subtitle" id="projectSubtitle">High-Recall Histopathology Screening System</div>
+
+                <p id="projectDescription">
+                  A recall-oriented segmentation framework for histopathology screening, designed to reduce false negatives in pre-diagnostic clinical workflows.
+                </p>
+
+                <ul id="projectBullets">
+                  <li>Developed an organ-aware conditional U-Net with SE attention.</li>
+                  <li>Introduced dilated-edge supervision for boundary refinement.</li>
+                  <li>Used Tversky-based optimisation to prioritise recall.</li>
+                  <li>Evaluated on multi-organ histopathology data derived from NuInsSeg.</li>
+                </ul>
+
+                <div class="project-tags" id="projectTags">
+                  <span>Medical AI</span>
+                  <span>Digital Pathology</span>
+                  <span>Segmentation</span>
+                  <span>PyTorch</span>
+                </div>
+
+                <div class="inline-links" id="projectLinks">
+                  <a href="https://doi.org/10.3390/bioengineering12111156" target="_blank" rel="noopener">Paper</a>
+                </div>
+              </div>
+            </article>
+
+            <div class="project-dots" aria-label="Project selector">
+              <button class="project-dot active" type="button" data-project="0" aria-label="Show ClinSegNet"></button>
+              <button class="project-dot" type="button" data-project="1" aria-label="Show HMSA-SegNet"></button>
+              <button class="project-dot" type="button" data-project="2" aria-label="Show Multi-modal Liver Segmentation"></button>
+              <button class="project-dot" type="button" data-project="3" aria-label="Show LLM Report Structuring"></button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" data-title="News">
+        <div class="slide-inner">
+          <div class="content-card">
+            <h2>News</h2>
+            <p class="section-intro">
+              Recent research updates, awards, and publication news.
+            </p>
+
+            <div class="two-col">
+              <div class="mini-card">
+                <h3>Updates</h3>
+
+                <div class="item">
+                  <div><span class="news-date">Nov 2025</span> ECS Prize awarded for Top MSc Project in the Impact Potential category.</div>
+                  <div class="muted small">University of Southampton, School of Electronics and Computer Science.</div>
+                </div>
+
+                <div class="item">
+                  <div><span class="news-date">Oct 2025</span> ClinSegNet published in <i>Bioengineering</i>.</div>
+                </div>
+
+                <div class="item">
+                  <div><span class="news-date">Oct 2025</span> HMSA-SegNet accepted by IEEE ISPA 2025 as an oral presentation.</div>
+                </div>
+              </div>
+
+              <div class="mini-card">
+                <h3>Research Thread</h3>
+                <p class="muted">
+                  The current research direction connects high-recall segmentation, human-in-the-loop refinement, multimodal report structuring, and reliable screening-oriented evaluation.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" data-title="Honors">
+        <div class="slide-inner">
+          <div class="content-card">
+            <h2>Honors</h2>
+            <p class="section-intro">
+              Selected awards and recognitions.
+            </p>
+
+            <div class="two-col">
+              <div class="mini-card">
+                <h3>Awards</h3>
+                <ul>
+                  <li>
+                    <b>ECS Prize: Top MSc Project in Impact Potential</b> <span class="muted">(Nov 2025)</span><br />
+                    <span class="muted">University of Southampton, School of Electronics and Computer Science</span>
+                  </li>
+
+                  <li>
+                    <b>SWUN Excellent Student</b> <span class="muted">(2021, 2022, 2023)</span>
+                  </li>
+
+                  <li>
+                    <b>SWUN Scholarship, Second Class</b> <span class="muted">(2021, 2022, 2023)</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="mini-card">
+                <h3>Profile</h3>
+                <p class="muted">
+                  Recognition mainly reflects research potential, project impact, and sustained academic performance across AI and medical image analysis.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" data-title="Skills">
+        <div class="slide-inner">
+          <div class="content-card">
+            <h2>Skills</h2>
+            <p class="section-intro">
+              Technical stack and research areas.
+            </p>
+
+            <div class="two-col">
+              <div class="mini-card">
+                <h3>Technical</h3>
+
+                <div class="skills-list">
+                  <div class="skill-row">
+                    <b>Programming:</b>
+                    <span class="muted">Python, Java, C</span>
+                  </div>
+
+                  <div class="skill-row">
+                    <b>Frameworks:</b>
+                    <span class="muted">PyTorch, scikit-learn, OpenCV, NumPy, Pandas, Matplotlib</span>
+                  </div>
+
+                  <div class="skill-row">
+                    <b>Tools:</b>
+                    <span class="muted">LaTeX, Linux, Zotero, BibTeX, Git</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mini-card">
+                <h3>Research</h3>
+
+                <div class="skills-list">
+                  <div class="skill-row">
+                    <b>Medical AI:</b>
+                    <span class="muted">Digital pathology, medical image segmentation, screening systems</span>
+                  </div>
+
+                  <div class="skill-row">
+                    <b>Learning Paradigms:</b>
+                    <span class="muted">Human-in-the-loop learning, multimodal learning, uncertainty-aware refinement</span>
+                  </div>
+
+                  <div class="skill-row">
+                    <b>Evaluation:</b>
+                    <span class="muted">Recall, sensitivity, Dice, IoU, workflow-aware assessment</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" data-title="Contact">
+        <div class="slide-inner">
+          <div class="content-card">
+            <h2>Contact</h2>
+            <p class="section-intro">
+              Open to academic collaboration in digital pathology, human-in-the-loop workflows, multimodal triage, medical information retrieval, and reliable AI for pre-diagnostic support.
+            </p>
+
+            <div class="two-col">
+              <div class="mini-card">
+                <h3>Get in Touch</h3>
+
+                <div class="contact-line">
+                  Email:
+                  <a href="mailto:by3n24@soton.ac.uk">by3n24@soton.ac.uk</a>
+                </div>
+
+                <div class="contact-line">
+                  Supervisor:
+                  Assoc. Prof. Haiming Liu
+                  (<a href="mailto:H.Liu@soton.ac.uk">H.Liu@soton.ac.uk</a>)
+                </div>
+
+                <div class="contact-line">
+                  Lab page:
+                  <a href="https://sites.google.com/view/haimingliu/home" target="_blank" rel="noopener">Haiming Liu</a>
+                </div>
+              </div>
+
+              <div class="mini-card">
+                <h3>Profiles</h3>
+
+                <div class="contact-line">
+                  Google Scholar:
+                  <a href="https://scholar.google.co.uk/citations?user=35xPgKQAAAAJ&hl=en" target="_blank" rel="noopener">Boyang Yu</a>
+                </div>
+
+                <div class="contact-line">
+                  GitHub:
+                  <a href="https://github.com/HewittYu" target="_blank" rel="noopener">HewittYu</a>
+                </div>
+
+                <div class="contact-line">
+                  ORCID:
+                  <a href="https://orcid.org/0009-0006-1540-5651" target="_blank" rel="noopener">0009-0006-1540-5651</a>
+                </div>
+
+                <div class="contact-line">
+                  LinkedIn:
+                  <a href="https://www.linkedin.com/in/boyang-yu-b4963b340/" target="_blank" rel="noopener">Boyang Yu</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </div>
+  </div>
 
-    <footer class="footer">
-      © <span id="year"></span> Boyang Yu. Hosted on GitHub Pages.
-    </footer>
-  </main>
+  <div class="slide-indicator" id="slideIndicator" aria-label="Section selector"></div>
+  <div class="page-label" id="pageLabel">Home · 1 / 9</div>
 
   <script>
     (function() {
       const root = document.documentElement;
       const toggle = document.getElementById('themeToggle');
-      const year = document.getElementById('year');
-
-      year.textContent = new Date().getFullYear();
 
       function setTheme(theme) {
         root.setAttribute('data-theme', theme);
@@ -1331,6 +1679,110 @@
         const current = root.getAttribute('data-theme');
         setTheme(current === 'dark' ? 'light' : 'dark');
       });
+    })();
+
+    (function() {
+      const track = document.getElementById('slideTrack');
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      const prev = document.getElementById('prevSlide');
+      const next = document.getElementById('nextSlide');
+      const navButtons = Array.from(document.querySelectorAll('[data-slide]'));
+      const indicator = document.getElementById('slideIndicator');
+      const pageLabel = document.getElementById('pageLabel');
+
+      let current = 0;
+
+      slides.forEach((slide, index) => {
+        const dot = document.createElement('button');
+        dot.className = 'slide-dot';
+        dot.type = 'button';
+        dot.setAttribute('aria-label', `Go to ${slide.dataset.title}`);
+        dot.addEventListener('click', () => goTo(index));
+        indicator.appendChild(dot);
+      });
+
+      const dots = Array.from(document.querySelectorAll('.slide-dot'));
+
+      function isMobileStacked() {
+        return window.matchMedia('(max-width: 760px)').matches;
+      }
+
+      function goTo(index) {
+        current = Math.max(0, Math.min(index, slides.length - 1));
+
+        if (!isMobileStacked()) {
+          track.style.transform = `translateX(-${current * 100}vw)`;
+        } else {
+          slides[current].scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        navButtons.forEach(button => {
+          if (Number(button.dataset.slide) === current) {
+            button.classList.add('active');
+          } else {
+            button.classList.remove('active');
+          }
+        });
+
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === current);
+        });
+
+        const title = slides[current].dataset.title || 'Section';
+        pageLabel.textContent = `${title} · ${current + 1} / ${slides.length}`;
+
+        prev.style.opacity = current === 0 ? '0.35' : '1';
+        next.style.opacity = current === slides.length - 1 ? '0.35' : '1';
+      }
+
+      prev.addEventListener('click', () => goTo(current - 1));
+      next.addEventListener('click', () => goTo(current + 1));
+
+      navButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          goTo(Number(button.dataset.slide));
+        });
+      });
+
+      window.addEventListener('keydown', event => {
+        if (event.key === 'ArrowLeft') {
+          goTo(current - 1);
+        }
+
+        if (event.key === 'ArrowRight') {
+          goTo(current + 1);
+        }
+      });
+
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      window.addEventListener('touchstart', event => {
+        touchStartX = event.changedTouches[0].screenX;
+      }, { passive: true });
+
+      window.addEventListener('touchend', event => {
+        touchEndX = event.changedTouches[0].screenX;
+        const delta = touchEndX - touchStartX;
+
+        if (Math.abs(delta) > 70) {
+          if (delta > 0) {
+            goTo(current - 1);
+          } else {
+            goTo(current + 1);
+          }
+        }
+      }, { passive: true });
+
+      window.addEventListener('resize', () => {
+        if (!isMobileStacked()) {
+          track.style.transform = `translateX(-${current * 100}vw)`;
+        } else {
+          track.style.transform = 'none';
+        }
+      });
+
+      goTo(0);
     })();
 
     (function() {
